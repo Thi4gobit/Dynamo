@@ -2,5 +2,5 @@
 Autodesk Dynamo Scripts
 ______________________________________________________________________________________________________
 # Dy_DeveloperCreateParameters
-Create Shared Parameters and insert as Project Parameters.
-Obs.: get all familys type, include nested familys
+Create Shared Parameters and insert as Project Parameters.\n
+Get all familys type, include nested familys
