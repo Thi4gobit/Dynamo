@@ -1,0 +1,540 @@
+{
+  "Uuid": "0292d883-03f6-4f53-b7fe-05b4484c82bb",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Dy_CreateSchedules",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Elements.Element": {
+        "Key": "Revit.Elements.Element",
+        "Value": "RevitNodes.dll"
+      },
+      "Revit.Elements.Element": {
+        "Key": "Revit.Elements.Element",
+        "Value": "RevitNodes.dll"
+      },
+      "DSOffice.Data": {
+        "Key": "DSOffice.Data",
+        "Value": "DSOffice.dll"
+      },
+      "List": {
+        "Key": "List",
+        "Value": "BuiltIn.ds"
+      },
+      "Dictionary": {
+        "Key": "DesignScript.Builtin.Dictionary",
+        "Value": "DesignScriptBuiltin.dll"
+      },
+      "String.FromObject": {
+        "Key": "DSCore.String",
+        "Value": "DSCoreNodes.dll"
+      },
+      "String": {
+        "Key": "DSCore.String",
+        "Value": "DSCoreNodes.dll"
+      },
+      "ScheduleView": {
+        "Key": "Revit.Elements.Views.ScheduleView",
+        "Value": "RevitNodes.dll"
+      },
+      "SchedulableField": {
+        "Key": "Revit.Schedules.SchedulableField",
+        "Value": "RevitNodes.dll"
+      },
+      "ScheduleFilter": {
+        "Key": "Revit.Schedules.ScheduleFilter",
+        "Value": "RevitNodes.dll"
+      },
+      "OverrideGraphicSettings": {
+        "Key": "Revit.Filter.OverrideGraphicSettings",
+        "Value": "RevitNodes.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[\"PLUGIN_Bandeja_De_Cabos_(juncoes_de_segmentos)\",\n\"PLUGIN_Bandeja_De_Cabos_(juncoes_de_conexoes)\",\n\"PLUGIN_Condutos_(juncoes_de_segmentos)\",\n\"PLUGIN_Condutos_(juncoes_de_conexoes)\"];",
+      "Id": "49fdf549daf54245a6d4613db3788601",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "53548af70af94a4baf1350d229d0ad2e",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[\"PLUGIN_Bandeja_De_Cabos_(segmentos)\",\n\"PLUGIN_Bandeja_De_Cabos_(conexoes)\",\n\"PLUGIN_Condutos_(segmentos)\",\n\"PLUGIN_Condutos_(conexoes)\",\n\"PLUGIN_Aterramento_(conectores)\",\n\"PLUGIN_Aterramento_(cabos)\",\n\"PLUGIN_Elementos_De_Fixacao_(segmentos)\"];",
+      "Id": "af549cb33d6246859d5b26c0b536f4c7",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "462ab3a05670496b86285238e0cf30e3",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ScheduleTypes, DSRevitNodesUI",
+      "SelectedIndex": 2,
+      "SelectedString": "RegularSchedule",
+      "NodeType": "ExtensionNode",
+      "Id": "7d43b8deb9c6442ca0a33bc6c58001d8",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0d00572de9fd4cddbed58cdc29a09777",
+          "Name": "ScheduleType",
+          "Description": "O ScheduleType selecionado",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selecione um tipo de tabela."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ScheduleFilterType, DSRevitNodesUI",
+      "SelectedIndex": 3,
+      "SelectedString": "Equal",
+      "NodeType": "ExtensionNode",
+      "Id": "a7df273448ef4056ba03560e2b8caeb0",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5e2fad4d3ec24d668cca7311b2e0abfe",
+          "Name": "FilterType",
+          "Description": "O FilterType selecionado",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Tipo de filtro da tabela da vista."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "//--------------------------< part I - create schedule >----------------------------\n//create schedule\nschedule = ScheduleView.CreateSchedule(category, name, schedule_type);\n\n\n//----------------------------< part II - add fields >------------------------------\n//able fields and able fields names (string)\nable_fields = ScheduleView.SchedulableFields(schedule);\nable_fileds_names = SchedulableField.Name(able_fields);\n\n//add fileds according to fields name\nadd_fields = ScheduleView.AddFields(schedule, Get.ValueAtIndex(able_fields, List.IndexOf(able_fileds_names, fields_names)));\n\n\n//----------------------------< part III - filter >----------------------------------\n//seleciona o field responsable to filter\nfilter_field = Get.ValueAtIndex(ScheduleView.Fields(add_fields), filter_column_number);\n\n//set filter\nset_filter = ScheduleFilter.ByFieldTypeAndValue(filter_field, schedule_filter_type, name);\n\n//add filter\nadd_filter = ScheduleView.AddFilters(schedule, set_filter);",
+      "Id": "af22515e9a084823ad41f680f75f24ca",
+      "Inputs": [
+        {
+          "Id": "05ce932f5e2b43bcb1ff61cefb1b6896",
+          "Name": "category",
+          "Description": "category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b7e5eff16007478c8a32b8a03d689069",
+          "Name": "name",
+          "Description": "name",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0d785a42d1af47279080ba0d48acdb53",
+          "Name": "schedule_type",
+          "Description": "schedule_type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5a2736da95c34f3aa41c6bd7210d15d6",
+          "Name": "fields_names",
+          "Description": "fields_names",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4ba39a33797743f5b963c25d8a8ed86e",
+          "Name": "filter_column_number",
+          "Description": "filter_column_number",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dddd05968564412f9fb38e997534116e",
+          "Name": "schedule_filter_type",
+          "Description": "schedule_filter_type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a0eec8149e0240deb655a00373a211e5",
+          "Name": "",
+          "Description": "schedule",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b81b01c43c82423f80660a226e1012c0",
+          "Name": "",
+          "Description": "able_fields",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4084b2b74ed84511b15700719f267e34",
+          "Name": "",
+          "Description": "able_fileds_names",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "52549c16195945ad97bb3cba193bb34f",
+          "Name": "",
+          "Description": "add_fields",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d534b340038c4f8eb8fd7428f00aeed8",
+          "Name": "",
+          "Description": "filter_field",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bb506df944d04723bb7317a001da0fc9",
+          "Name": "",
+          "Description": "set_filter",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "55dfc3aec49b47538c72eb56aacc351f",
+          "Name": "",
+          "Description": "add_filter",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"PLUGIN_Aterramento_Conexoes\";",
+      "Id": "b0cdb978fa894cc69c41f73d4fe2346f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1b3fb618ad6a4485a37eb73c23432d1a",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 179,
+      "SelectedString": "OST_MechanicalEquipment",
+      "NodeType": "ExtensionNode",
+      "Id": "564fbdfcad6f457a9eb469ae980abd37",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "adadf750f7614e8d89c213bf46952b11",
+          "Name": "Category",
+          "Description": "A categoria selecionada.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Todas as categorias incorporadas."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[\"ID_codigo\",\n\"ID_descricao\",\n\"ID_unidade\",\n\"ESP_codigo\",\n\"ESP_discriminacao\",\n\"ESP_especificacao_geral\",\n\"ESP_notas_gerais\",\n\"ESP_referencia_fabricante\",\n\"ESP_contavel\",\n\"ITC_schedule\"];",
+      "Id": "1d33f721d4e64002ad9a545a3b383ed1",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8867a309b20848e3ab0a75e68dc602b8",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "7;",
+      "Id": "dce6e721b7764df7bae5849bb3b35168",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f7a28795068f487aaa16cf1cfee1139c",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "0d00572de9fd4cddbed58cdc29a09777",
+      "End": "0d785a42d1af47279080ba0d48acdb53",
+      "Id": "ccc99fcd902c4743a69b88074632afe9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5e2fad4d3ec24d668cca7311b2e0abfe",
+      "End": "dddd05968564412f9fb38e997534116e",
+      "Id": "08f33dc1197040e0b0a8ea90b99c7ded",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1b3fb618ad6a4485a37eb73c23432d1a",
+      "End": "b7e5eff16007478c8a32b8a03d689069",
+      "Id": "b7680af94d734bb29cdfdee242459a46",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "adadf750f7614e8d89c213bf46952b11",
+      "End": "05ce932f5e2b43bcb1ff61cefb1b6896",
+      "Id": "79f71034d4444876b119c75a94d68d05",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8867a309b20848e3ab0a75e68dc602b8",
+      "End": "5a2736da95c34f3aa41c6bd7210d15d6",
+      "Id": "46d70a89800441f8b0de5f177c117e94",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f7a28795068f487aaa16cf1cfee1139c",
+      "End": "4ba39a33797743f5b963c25d8a8ed86e",
+      "Id": "af86372fba544c3f84d85258321f1916",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.13",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "2.0",
+      "Data": {}
+    }
+  ],
+  "Author": "",
+  "Linting": {
+    "activeLinter": "Nenhum",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [
+    {
+      "NodeId": "af22515e-9a08-4823-ad41-f680f75f24ca",
+      "Binding": {
+        "CreateSchedule_InClassDecl-1_InFunctionScope-1_Instance0_af22515e-9a08-4823-ad41-f680f75f24ca": "PFNPQVAtRU5WOkVudmVsb3BlIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOlNPQVAtRU5DPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyIgeG1sbnM6U09BUC1FTlY9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW52ZWxvcGUvIiB4bWxuczpjbHI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vc29hcC9lbmNvZGluZy9jbHIvMS4wIiBTT0FQLUVOVjplbmNvZGluZ1N0eWxlPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyI+DQo8U09BUC1FTlY6Qm9keT4NCjxhMTpDYWxsU2l0ZV94MDAyQl9UcmFjZVNlcmlhbGlzZXJIZWxwZXIgaWQ9InJlZi0xIiB4bWxuczphMT0iaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9jbHIvbnNhc3NlbS9Qcm90b0NvcmUvUHJvdG9Db3JlJTJDJTIwVmVyc2lvbiUzRDIuMTMuMS4zODg3JTJDJTIwQ3VsdHVyZSUzRG5ldXRyYWwlMkMlMjBQdWJsaWNLZXlUb2tlbiUzRG51bGwiPg0KPE51bWJlck9mRWxlbWVudHM+MTwvTnVtYmVyT2ZFbGVtZW50cz4NCjxCYXNlLTBfSGFzRGF0YT50cnVlPC9CYXNlLTBfSGFzRGF0YT4NCjxCYXNlLTBfRGF0YSBpZD0icmVmLTMiPlBGTlBRVkF0UlU1V09rVnVkbVZzYjNCbElIaHRiRzV6T25oemFUMGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TVM5WVRVeFRZMmhsYldFdGFXNXpkR0Z1WTJVaUlIaHRiRzV6T25oelpEMGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNakF3TVM5WVRVeFRZMmhsYldFaUlIaHRiRzV6T2xOUFFWQXRSVTVEUFNKb2RIUndPaTh2YzJOb1pXMWhjeTU0Yld4emIyRndMbTl5Wnk5emIyRndMMlZ1WTI5a2FXNW5MeUlnZUcxc2JuTTZVMDlCVUMxRlRsWTlJbWgwZEhBNkx5OXpZMmhsYldGekxuaHRiSE52WVhBdWIzSm5MM052WVhBdlpXNTJaV3h2Y0dVdklpQjRiV3h1Y3pwamJISTlJbWgwZEhBNkx5OXpZMmhsYldGekxtMXBZM0p2YzI5bWRDNWpiMjB2YzI5aGNDOWxibU52WkdsdVp5OWpiSEl2TVM0d0lpQlRUMEZRTFVWT1ZqcGxibU52WkdsdVoxTjBlV3hsUFNKb2RIUndPaTh2YzJOb1pXMWhjeTU0Yld4emIyRndMbTl5Wnk5emIyRndMMlZ1WTI5a2FXNW5MeUkrRFFvOFUwOUJVQzFGVGxZNlFtOWtlVDROQ2p4aE1UcFRaWEpwWVd4cGVtRmliR1ZKWkNCcFpEMGljbVZtTFRFaUlIaHRiRzV6T21FeFBTSm9kSFJ3T2k4dmMyTm9aVzFoY3k1dGFXTnliM052Wm5RdVkyOXRMMk5zY2k5dWMyRnpjMlZ0TDFKbGRtbDBVMlZ5ZG1salpYTXVVR1Z5YzJsemRHVnVZMlV2VW1WMmFYUlRaWEoyYVdObGN5VXlReVV5TUZabGNuTnBiMjRsTTBReUxqRXpMakV1TXpnNU1TVXlReVV5TUVOMWJIUjFjbVVsTTBSdVpYVjBjbUZzSlRKREpUSXdVSFZpYkdsalMyVjVWRzlyWlc0bE0wUnVkV3hzSWo0TkNqeHpkSEpwYm1kSlJDQnBaRDBpY21WbUxUTWlQalJpTnpVNVpUZzNMVGc1WkRVdE5ETXpOeTA0WldNMkxXUXhOVGM1T1RWbU16QXdPUzB3TURBME9UQTJPVHd2YzNSeWFXNW5TVVErRFFvOGFXNTBTVVErTWprNU1URXpQQzlwYm5SSlJENE5Dand2WVRFNlUyVnlhV0ZzYVhwaFlteGxTV1ErRFFvOEwxTlBRVkF0UlU1V09rSnZaSGsrRFFvOEwxTlBRVkF0UlU1V09rVnVkbVZzYjNCbFBnMEs8L0Jhc2UtMF9EYXRhPg0KPEJhc2UtMF9IYXNOZXN0ZWREYXRhPmZhbHNlPC9CYXNlLTBfSGFzTmVzdGVkRGF0YT4NCjwvYTE6Q2FsbFNpdGVfeDAwMkJfVHJhY2VTZXJpYWxpc2VySGVscGVyPg0KPC9TT0FQLUVOVjpCb2R5Pg0KPC9TT0FQLUVOVjpFbnZlbG9wZT4NCg=="
+      }
+    }
+  ],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.13.1.3887",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Visualização do plano de fundo",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Name": "Code Block",
+        "ShowGeometry": true,
+        "Id": "49fdf549daf54245a6d4613db3788601",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 988.99715668846738,
+        "Y": 1138.4247721133456
+      },
+      {
+        "Name": "Table Names",
+        "ShowGeometry": true,
+        "Id": "af549cb33d6246859d5b26c0b536f4c7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1002.3800221202505,
+        "Y": 888.91129528165357
+      },
+      {
+        "Name": "Schedule Type",
+        "ShowGeometry": true,
+        "Id": "7d43b8deb9c6442ca0a33bc6c58001d8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2836.4448727461877,
+        "Y": 1571.981206653903
+      },
+      {
+        "Name": "Schedule Filter Type",
+        "ShowGeometry": true,
+        "Id": "a7df273448ef4056ba03560e2b8caeb0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2872.0582238962497,
+        "Y": 1704.8154415049087
+      },
+      {
+        "Name": "Code Block",
+        "ShowGeometry": true,
+        "Id": "af22515e9a084823ad41f680f75f24ca",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3351.87062506311,
+        "Y": 1363.37561718479
+      },
+      {
+        "Name": "Table Names",
+        "ShowGeometry": true,
+        "Id": "b0cdb978fa894cc69c41f73d4fe2346f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2357.4132890912492,
+        "Y": 1512.9897248295943
+      },
+      {
+        "Name": "Categories",
+        "ShowGeometry": true,
+        "Id": "564fbdfcad6f457a9eb469ae980abd37",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2384.7130877284794,
+        "Y": 1345.3081865723752
+      },
+      {
+        "Name": "Code Block",
+        "ShowGeometry": true,
+        "Id": "1d33f721d4e64002ad9a545a3b383ed1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2335.5352983626995,
+        "Y": 1016.3782926391882
+      },
+      {
+        "Name": "Code Block",
+        "ShowGeometry": true,
+        "Id": "dce6e721b7764df7bae5849bb3b35168",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2987.7015240807987,
+        "Y": 1852.9701758904523
+      }
+    ],
+    "Annotations": [],
+    "X": -743.180511124679,
+    "Y": -260.75576213924535,
+    "Zoom": 0.42889605084835453
+  }
+}
