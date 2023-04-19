@@ -7,6 +7,9 @@ ________________________________________________________________________________
 # Dy_DeveloperCreateParametersCKT (in study)
 Create Shared Parameters to electrical circuits and insert as Project Parameters. Get all familys type, include nested familys.
 ______________________________________________________________________________________________________
+# Dy_DeveloperCreateParametersPart2 (in study)
+Create Shared Parameters and insert as Project Parameters. Use like temporary solution for count some itens in system familys (conduits, conduit fitting, cable tray and cable tray fitting)
+______________________________________________________________________________________________________
 # Dy_DeveloperCreateSchedule (not fineshed)
 Create Schedule for export datas with selected fields. It can create filters too. Loop "for" for multiples schedules need to be worked on.
 ______________________________________________________________________________________________________
