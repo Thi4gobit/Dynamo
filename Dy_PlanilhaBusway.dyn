@@ -1,0 +1,978 @@
+{
+  "Uuid": "e453f93e-0d02-48bb-9466-5c04cb922e29",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Dy_PlanilhaBusway",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Elements.Element": {
+        "Key": "Revit.Elements.Element",
+        "Value": "RevitNodes.dll"
+      },
+      "Revit.Elements.Element": {
+        "Key": "Revit.Elements.Element",
+        "Value": "RevitNodes.dll"
+      },
+      "Math": {
+        "Key": "DSCore.Math",
+        "Value": "DSCoreNodes.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "d1eb75fc36bf4a028073459a92a9fe04",
+      "Inputs": [
+        {
+          "Id": "bdc0469d89e04d4489b7762ddac11229",
+          "Name": "Category",
+          "Description": "Categoria",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "601d6715ade64365ae3b796c4c059be1",
+          "Name": "Elements",
+          "Description": "Um tipo de elemento.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obter todos os elementos da categoria especificada no modelo."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 34,
+      "SelectedString": "OST_CableTray",
+      "NodeType": "ExtensionNode",
+      "Id": "be1204e4474f4e83b35bd6ece934ff9b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6c5df750e8914ab3b7fa0cc5ae1e3ae9",
+          "Name": "Category",
+          "Description": "A categoria selecionada.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Todas as categorias incorporadas."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\nrotina = Elements.Element.GetParameterValueByName(elementos_tipo, \"ITC_Dynamo\");\n[Imperative]\n{\n\tfor (i in 0..(List.Count(rotina)-1))\n\t{\n\t\tif (rotina[i] == \"Dy_PlanilhaBusway\")\n\t\t{\n\t\t\tcodigo_eap = Elements.Element.GetParameterValueByName(elementos_tipo[i], \"ID_Código EAP\");\n\t\t\tsufixo = Elements.Element.GetParameterValueByName(elementos[i], \"ID_Código Sufixo\");\n\t\t\taux1 = ((sufixo != \"\" ? (\".\" + sufixo) : \"\"));\n\t\t\tcodigo = (codigo_eap + aux1);\n\t\t\tout = Elements.Element.SetParameterByName(elementos[i], \"ID_Código\", codigo);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tcontinue;\n\t\t}\n\t};\n\treturn 0;\n};",
+      "Id": "1d4fcc5a67e6417284fd2b95bb908470",
+      "Inputs": [
+        {
+          "Id": "93e3cea1963c4675b590d1c91b0b996b",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "cf444293b6964f6bbcba976ac76506b9",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8d84e4bba911428784f72ce74a3095a7",
+          "Name": "",
+          "Description": "rotina",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f977cd77375d466b93ac241c687b01d5",
+          "Name": "",
+          "Description": "Valor da expressão na linha 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\nrotina = Elements.Element.GetParameterValueByName(elementos_tipo, \"ITC_Dynamo\");\n[Imperative]\n{\n\tfor (i in 0..(List.Count(rotina)-1))\n\t{\n\t\tif (rotina[i] == \"Dy_PlanilhaBusway\")\n\t\t{\n\t\t\tdescricao_base = Elements.Element.GetParameterValueByName(elementos_tipo[i], \"ID_Descrição\");\n\t\t\t//largura = Elements.Element.GetParameterValueByName(elementos[i], \"Largura\");\n\t\t\t//altura = Elements.Element.GetParameterValueByName(elementos[i], \"Altura\");\n\t\t\tcapacidade = Elements.Element.GetParameterValueByName(elementos[i], \"PROJ_Capacidade Busway\");\n\t\t\tinstalacao = Elements.Element.GetParameterValueByName(elementos[i], \"ITC_Instalação\");\n\t\t\t//aux5 = ((largura == 25 || largura == 0.025 ? 19 : (largura == 38 || largura == 0.038 ? 38 : (largura == 50 || largura == 0.05 ? 50 : (largura == 75 || largura == 0.075 ? 75 : (largura == 100 || largura == 0.1 ? 100 : (largura == 125 || largura == 0.125 ? 125 : (largura == 150 || largura == 0.15 ? 150 : (largura == 175 || largura == 0.175 ? 175 : (largura == 200 || largura == 0.2 ? 200 : (largura == 250 || largura == 0.25 ? 250 : (largura == 300 || largura == 0.3 ? 300 : (largura == 400 || largura == 0.4 ? 400 : (largura == 500 || largura == 0.5 ? 500 : (largura == 600 || largura == 0.6 ? 600 : (largura == 700 || largura == 0.7 ? 700 : (largura == 800 || largura == 0.8 ? 800 : (largura == 900 || largura == 0.9 ? 900 : (largura == 1000 || largura == 1 ? 1000 : \"\")))))))))))))))))));\n\t\t\t//aux6 = ((altura == 25 || altura == 0.025 ? 19 : (altura == 38 || altura == 0.038 ? 38 : (altura == 50 || altura == 0.05 ? 50 : (altura == 75 || altura == 0.075 ? 75 : (altura == 100 || altura == 0.1 ? 100 : (altura == 125 || altura == 0.125 ? 125 : (altura == 150 || altura == 0.15 ? 150 : (altura == 175 || altura == 0.175 ? 175 : (altura == 200 || altura == 0.2 ? 200 : (altura == 250 || altura == 0.25 ? 250 : (altura == 300 || altura == 0.3 ? 300 : (altura == 400 || altura == 0.4 ? 400 : (altura == 500 || altura == 0.5 ? 500 : (altura == 600 || altura == 0.6 ? 600 : (altura == 700 || altura == 0.7 ? 700 : (altura == 800 || altura == 0.8 ? 800 : (altura == 900 || altura == 0.9 ? 900 : (altura == 1000 || altura == 1 ? 1000 : \"\")))))))))))))))))));\n\t\t\t//out1 = ((((\" - \" + aux5) + \"x\") + aux6) + \" mm\");\n\t\t\tout1 = (capacidade != \"\" ? (\" - \" + capacidade) : \"\");\n\t\t\tout2 = (instalacao != \"\" ? (\" - \" + instalacao) : \"\");\n\t\t\tdescricao = (((descricao_base) + out1) + out2) + \".\";\n\t\t\tout = Elements.Element.SetParameterByName(elementos[i], \"ID_Descrição Planilha Quantidades\", descricao);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tcontinue;\n\t\t}\n\t};\n\treturn 0;\n};",
+      "Id": "1f0fe5b56e0e47daa38c98243c275ca4",
+      "Inputs": [
+        {
+          "Id": "39de128666df4c5ab3fada02c51e5c62",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0247f423fed54e5481264e51eafe8092",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fb5994177e424b32ae4488a94653939c",
+          "Name": "",
+          "Description": "rotina",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5a0d7c6dc23346b49412ce560ae54531",
+          "Name": "",
+          "Description": "Valor da expressão na linha 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "7dd887129f4e46a88da984b13320224c",
+      "Inputs": [
+        {
+          "Id": "d7ac23e623db4d5180aaf4d625948033",
+          "Name": "Category",
+          "Description": "Categoria",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b98d9ef8fed24e37be88f9d4e1789c81",
+          "Name": "Elements",
+          "Description": "Um tipo de elemento.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obter todos os elementos da categoria especificada no modelo."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 96,
+      "SelectedString": "OST_CableTrayFitting",
+      "NodeType": "ExtensionNode",
+      "Id": "a63383098e8d419685b1ba0e086f46a4",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "65b157fa58af4fd9aeec18534480d235",
+          "Name": "Category",
+          "Description": "A categoria selecionada.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Todas as categorias incorporadas."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\nrotina = Elements.Element.GetParameterValueByName(elementos_tipo, \"ITC_Dynamo\");\n[Imperative]\n{\n\tfor (i in 0..(List.Count(rotina)-1))\n\t{\n\t\tif (rotina[i] == \"Dy_PlanilhaBusway\")\n\t\t{\n\t\t\tdescricao_base = Elements.Element.GetParameterValueByName(elementos_tipo[i], \"ID_Descrição\");\n\t\t\t//categoria = Elements.Element.GetParameterValueByName(elementos_tipo[i], \"ITC_Subcategoria\");\n\t\t\taux01 = Elements.Element.GetParameterValueByName(elementos[i], \"Tray Width\");\n\t\t\taux02 = Elements.Element.GetParameterValueByName(elementos[i], \"Tray Height\");\n\t\t\taux03 = Elements.Element.GetParameterValueByName(elementos[i], \"Largura\");\n\t\t\taux04 = Elements.Element.GetParameterValueByName(elementos[i], \"Altura\");\n\t\t\taux1 = (aux01 == \"\" ? aux03 : aux01);\n\t\t\taux2 = (aux02 == \"\" ? aux04 : aux02);\n\t\t\taux3 = Elements.Element.GetParameterValueByName(elementos[i], \"Largura maior\");\n\t\t\taux4 = Elements.Element.GetParameterValueByName(elementos[i], \"Largura menor\");\n\t\t\t//aux5 = Elements.Element.GetParameterValueByName(elementos[i], \"PROJ_Capacidade Busway\");\n\t\t\taux6 = Elements.Element.GetParameterValueByName(elementos[i], \"Ângulo\");\n\t\t\taux7 = Elements.Element.GetParameterValueByName(elementos[i], \"PROJ_Instalação\");\n\n\t\t\taux8 = ((aux1 == 25 || aux1 == 0.025 ? 19 : (aux1 == 38 || aux1 == 0.038 ? 38 : (aux1 == 50 || aux1 == 0.05 ? 50 : (aux1 == 75 || aux1 == 0.075 ? 75 : (aux1 == 100 || aux1 == 0.1 ? 100 : (aux1 == 125 || aux1 == 0.125 ? 125 : (aux1 == 150 || aux1 == 0.15 ? 150 : (aux1 == 175 || aux1 == 0.175 ? 175 : (aux1 == 200 || aux1 == 0.2 ? 200 : (aux1 == 250 || aux1 == 0.25 ? 250 : (aux1 == 300 || aux1 == 0.3 ? 300 : (aux1 == 400 || aux1 == 0.4 ? 400 : (aux1 == 500 || aux1 == 0.5 ? 500 : (aux1 == 600 || aux1 == 0.6 ? 600 : (aux1 == 700 || aux1 == 0.7 ? 700 : (aux1 == 800 || aux1 == 0.8 ? 800 : (aux1 == 900 || aux1 == 0.9 ? 900 : (aux1 == 1000 || aux1 == 1 ? 1000 : \"\")))))))))))))))))));\n\t\t\taux9 = ((aux2 == 25 || aux2 == 0.025 ? 19 : (aux2 == 38 || aux2 == 0.038 ? 38 : (aux2 == 50 || aux2 == 0.05 ? 50 : (aux2 == 75 || aux2 == 0.075 ? 75 : (aux2 == 100 || aux2 == 0.1 ? 100 : (aux2 == 125 || aux2 == 0.125 ? 125 : (aux2 == 150 || aux2 == 0.15 ? 150 : (aux2 == 175 || aux2 == 0.175 ? 175 : (aux2 == 200 || aux2 == 0.2 ? 200 : (aux2 == 250 || aux2 == 0.25 ? 250 : (aux2 == 300 || aux2 == 0.3 ? 300 : (aux2 == 400 || aux2 == 0.4 ? 400 : (aux2 == 500 || aux2 == 0.5 ? 500 : (aux2 == 600 || aux2 == 0.6 ? 600 : (aux2 == 700 || aux2 == 0.7 ? 700 : (aux2 == 800 || aux2 == 0.8 ? 800 : (aux2 == 900 || aux2 == 0.9 ? 900 : (aux2 == 1000 || aux2 == 1 ? 1000 : \"\")))))))))))))))))));\n\n\t\t\taux10 = ((aux3 == 25 || aux3 == 0.025 ? 19 : (aux3 == 38 || aux3 == 0.038 ? 38 : (aux3 == 50 || aux3 == 0.05 ? 50 : (aux3 == 75 || aux3 == 0.075 ? 75 : (aux3 == 100 || aux3 == 0.1 ? 100 : (aux3 == 125 || aux3 == 0.125 ? 125 : (aux3 == 150 || aux3 == 0.15 ? 150 : (aux3 == 175 || aux3 == 0.175 ? 175 : (aux3 == 200 || aux3 == 0.2 ? 200 : (aux3 == 250 || aux3 == 0.25 ? 250 : (aux3 == 300 || aux3 == 0.3 ? 300 : (aux3 == 400 || aux3 == 0.4 ? 400 : (aux3 == 500 || aux3 == 0.5 ? 500 : (aux3 == 600 || aux3 == 0.6 ? 600 : (aux3 == 700 || aux3 == 0.7 ? 700 : (aux3 == 800 || aux3 == 0.8 ? 800 : (aux3 == 900 || aux3 == 0.9 ? 900 : (aux3 == 1000 || aux3 == 1 ? 1000 : \"\")))))))))))))))))));\n\t\t\taux11 = ((aux4 == 25 || aux4 == 0.025 ? 19 : (aux4 == 38 || aux4 == 0.038 ? 38 : (aux4 == 50 || aux4 == 0.05 ? 50 : (aux4 == 75 || aux4 == 0.075 ? 75 : (aux4 == 100 || aux4 == 0.1 ? 100 : (aux4 == 125 || aux4 == 0.125 ? 125 : (aux4 == 150 || aux4 == 0.15 ? 150 : (aux4 == 175 || aux4 == 0.175 ? 175 : (aux4 == 200 || aux4 == 0.2 ? 200 : (aux4 == 250 || aux4 == 0.25 ? 250 : (aux4 == 300 || aux4 == 0.3 ? 300 : (aux4 == 400 || aux4 == 0.4 ? 400 : (aux4 == 500 || aux4 == 0.5 ? 500 : (aux4 == 600 || aux4 == 0.6 ? 600 : (aux4 == 700 || aux4 == 0.7 ? 700 : (aux4 == 800 || aux4 == 0.8 ? 800 : (aux4 == 900 || aux4 == 0.9 ? 900 : (aux4 == 1000 || aux4 == 1 ? 1000 : \"\")))))))))))))))))));\n\n\t\t\t//out1 = (categoria == \"Acessórios para Busway\" ? (\" - \" + aux5) : \"\");\n\t\t\tout1 = (((aux6 > 89) && (aux6 < 91) ? \" - 90°\" : ((aux6 > 44) && (aux6 < 46) ? \" - 45°\" : \"\")));\n\t\t\t//out2 = (categoria == \"Acessórios para Busway\" ? \"\" : (aux10 > 0 ? \" - \" + aux10 + \"x\" + aux9 + \" mm para \" + aux11 + \"x\" + aux9 + \" mm.\" : \" - \" + aux8 + \"x\" + aux9 + \" mm.\"));\n\t\t\tout2 = (aux10 > 0 ? \" - \" + aux10 + \"x\" + aux9 + \" mm para \" + aux11 + \"x\" + aux9 + \" mm.\" : \" - \" + aux8 + \"x\" + aux9 + \" mm.\");\n\t\t\tout3 = (aux7 != \"\" ? (\" - \" + aux7 + \".\") : \"\");\n\t\t\tdescricao = ((descricao_base + out1) + out2) + out3;\n\t\t\tout = Elements.Element.SetParameterByName(elementos[i], \"ID_Descrição Planilha Quantidades\", descricao);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tcontinue;\n\t\t}\n\t};\n\treturn 0;\n};",
+      "Id": "d55094c12ba1452aa1f746677fba69a7",
+      "Inputs": [
+        {
+          "Id": "55f814f6202b4c5eb516ab0f502b78bb",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "84f7d2c0ebe544fd9e168f676eb1d323",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "350d0a22697b4c7691ab77728a68683e",
+          "Name": "",
+          "Description": "rotina",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f51c054331e346c694bd20374f3ec267",
+          "Name": "",
+          "Description": "Valor da expressão na linha 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\nrotina = Elements.Element.GetParameterValueByName(elementos_tipo, \"ITC_Dynamo\");\n[Imperative]\n{\n\tfor (i in 0..(List.Count(rotina)-1))\n\t{\n\t\tif (rotina[i] == \"Dy_PlanilhaBusway\")\n\t\t{\n\t\t\tcodigo_eap = Elements.Element.GetParameterValueByName(elementos_tipo[i], \"ID_Código EAP\");\n\t\t\tsufixo = Elements.Element.GetParameterValueByName(elementos[i], \"ID_Código Sufixo\");\n\t\t\taux1 = ((sufixo != \"\" ? (\".\" + sufixo) : \"\"));\n\t\t\tcodigo = (codigo_eap + aux1);\n\t\t\tout = Elements.Element.SetParameterByName(elementos[i], \"ID_Código\", codigo);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tcontinue;\n\t\t}\n\t};\n\treturn 0;\n};",
+      "Id": "00de4e4d67c443358d513ce71f42f301",
+      "Inputs": [
+        {
+          "Id": "2593875fa64d4d95a8fd1be2de4f1ca0",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fe86c2eff54a4e78a87cc476e4114d5d",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3a5048150bbd4574b43c6f7618400844",
+          "Name": "",
+          "Description": "rotina",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9967cbedaeed488faf304254dacfe0e6",
+          "Name": "",
+          "Description": "Valor da expressão na linha 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "537afedf4f044505ae5d18c7c9febf5a",
+      "Inputs": [
+        {
+          "Id": "7a9c10b5573d4f3a9918923318700b75",
+          "Name": "Category",
+          "Description": "Categoria",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "65b77825490a45e384783d069657efec",
+          "Name": "Elements",
+          "Description": "Um tipo de elemento.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obter todos os elementos da categoria especificada no modelo."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\nrotina = Elements.Element.GetParameterValueByName(elementos_tipo, \"ITC_Dynamo\");\n[Imperative]\n{\n\tfor (i in 0..(List.Count(rotina)-1))\n\t{\n\t\tif (rotina[i] == \"Dy_PlanilhaBusway\")\n\t\t{\n\t\t\tcodigo_eap = Elements.Element.GetParameterValueByName(elementos_tipo[i], \"ID2_Código EAP\");\n\t\t\tsufixo = Elements.Element.GetParameterValueByName(elementos[i], \"ID2_Código Sufixo\");\n\t\t\taux1 = ((sufixo != \"\" ? (\".\" + sufixo) : \"\"));\n\t\t\tcodigo = (codigo_eap + aux1);\n\t\t\tout = Elements.Element.SetParameterByName(elementos[i], \"ID2_Código\", codigo);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tcontinue;\n\t\t}\n\t};\n\treturn 0;\n};",
+      "Id": "a1113ef976e244e9bcccb691f5d6ea98",
+      "Inputs": [
+        {
+          "Id": "130037c6510e4f328e92713df2814fcf",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d6c00bd8b1404b5c9e477f60abf10912",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b62a3926d6a44809a2a447c392b38d3f",
+          "Name": "",
+          "Description": "rotina",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7ed0bbd9daba4d81aa1fa123995c9920",
+          "Name": "",
+          "Description": "Valor da expressão na linha 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 34,
+      "SelectedString": "OST_CableTray",
+      "NodeType": "ExtensionNode",
+      "Id": "f1a447b437ab426e8d1324ba130bdc41",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9a29b41f521941d7b1561bbf9bd7f360",
+          "Name": "Category",
+          "Description": "A categoria selecionada.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Todas as categorias incorporadas."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 96,
+      "SelectedString": "OST_CableTrayFitting",
+      "NodeType": "ExtensionNode",
+      "Id": "acba81dcb0554f8c989123a5605ef11f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e4d283211e2d4d2d95d12636a0f59fba",
+          "Name": "Category",
+          "Description": "A categoria selecionada.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Todas as categorias incorporadas."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "a960f60e4fee461289ed871c6f451466",
+      "Inputs": [
+        {
+          "Id": "d65f4f0061164f12b77098823b1fa52d",
+          "Name": "Category",
+          "Description": "Categoria",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b6f5c8e783594d99a6a2800ad2bd8551",
+          "Name": "Elements",
+          "Description": "Um tipo de elemento.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obter todos os elementos da categoria especificada no modelo."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\nrotina = Elements.Element.GetParameterValueByName(elementos_tipo, \"ITC_Dynamo\");\n[Imperative]\n{\n\tfor (i in 0..(List.Count(rotina)-1))\n\t{\n\t\tif (rotina[i] == \"Dy_PlanilhaBusway\")\n\t\t{\n\t\t\tdescricao_base = Elements.Element.GetParameterValueByName(elementos_tipo[i], \"ID2_Descrição\");\n\t\t\tsubcategoria = Elements.Element.GetParameterValueByName(elementos[i], \"ITC_Subcategoria\");\n\t\t\tinstalacao = Elements.Element.GetParameterValueByName(elementos[i], \"PROJ_Instalação\");\n\t\t\taux1 = Elements.Element.GetParameterValueByName(elementos[i], \"Largura\");\n\t\t\taux2 = Elements.Element.GetParameterValueByName(elementos[i], \"Altura\");\n\t\t\taux5 = ((aux1 == 25 ? 19 : (aux1 == 38 ? 38 : (aux1 == 50 ? 50 : (aux1 == 75 ? 75 : (aux1 == 100 ? 100 : (aux1 == 125 ? 125 : (aux1 == 150 ? 150 : (aux1 == 175 ? 175 : (aux1 == 200 ? 200 : (aux1 == 250 ? 250 : (aux1 == 300 ? 300 : (aux1 == 400 ? 400 : (aux1 == 500 ? 500 : (aux1 == 600 ? 600 : (aux1 == 700 ? 700 : (aux1 == 800 ? 800 : (aux1 == 900 ? 900 : (aux1 == 1000 ? 1000 : \"\")))))))))))))))))));\n\t\t\taux6 = ((aux2 == 25 ? 19 : (aux2 == 38 ? 38 : (aux2 == 50 ? 50 : (aux2 == 75 ? 75 : (aux2 == 100 ? 100 : (aux2 == 125 ? 125 : (aux2 == 150 ? 150 : (aux2 == 175 ? 175 : (aux2 == 200 ? 200 : (aux2 == 250 ? 250 : (aux2 == 300 ? 300 : (aux2 == 400 ? 400 : (aux2 == 500 ? 500 : (aux2 == 600 ? 600 : (aux2 == 700 ? 700 : (aux2 == 800 ? 800 : (aux2 == 900 ? 900 : (aux2 == 1000 ? 1000 : \"\")))))))))))))))))));\n\t\t\taux7 = Elements.Element.GetParameterValueByName(elementos[i], \"Tray Width\");\n\t\t\taux8 = Elements.Element.GetParameterValueByName(elementos[i], \"Tray Height\");\n\t\t\taux9 = ((aux7 == 25 ? 19 : (aux7 == 38 ? 38 : (aux7 == 50 ? 50 : (aux7 == 75 ? 75 : (aux7 == 100 ? 100 : (aux7 == 125 ? 125 : (aux7 == 150 ? 150 : (aux7 == 175 ? 175 : (aux7 == 200 ? 200 : (aux7 == 250 ? 250 : (aux7 == 300 ? 300 : (aux7 == 400 ? 400 : (aux7 == 500 ? 500 : (aux7 == 600 ? 600 : (aux7 == 700 ? 700 : (aux7 == 800 ? 800 : (aux7 == 900 ? 900 : (aux7 == 1000 ? 1000 : \"\")))))))))))))))))));\n\t\t\taux10 = ((aux8 == 25 ? 19 : (aux8 == 38 ? 38 : (aux8 == 50 ? 50 : (aux8 == 75 ? 75 : (aux8 == 100 ? 100 : (aux8 == 125 ? 125 : (aux8 == 150 ? 150 : (aux8 == 175 ? 175 : (aux8 == 200 ? 200 : (aux8 == 250 ? 250 : (aux8 == 300 ? 300 : (aux8 == 400 ? 400 : (aux8 == 500 ? 500 : (aux8 == 600 ? 600 : (aux8 == 700 ? 700 : (aux8 == 800 ? 800 : (aux8 == 900 ? 900 : (aux8 == 1000 ? 1000 : \"\")))))))))))))))))));\n\t\t\taux11 = (aux5 != \"\" && aux6 != \"\" ? (\" - \" + aux5 + \"x\" + aux6 + \" mm\") : \"\");\n\t\t\taux12 = (aux5 != \"\" && aux6 != \"\" ? (\" - \" + aux6 + \" mm\") : \"\");\n\t\t\taux13 = (aux9 != \"\" && aux10 != \"\" ? (\" - \" + aux9 + \"x\" + aux10 + \" mm\") : \"\");\n\t\t\taux14 = (aux9 != \"\" && aux10 != \"\" ? (\" - \" + aux10 + \" mm\") : \"\");\n\t\t\tout1 = (subcategoria == \"Perfilado\" || subcategoria == \"Perfilado_Estrado\" ? (aux11 + aux13) : (aux12 + aux14));\n\t\t\tout2 = (instalacao != \"\" ? (\" - \" + instalacao) : \"\");\n\t\t\tdescricao = (((descricao_base) + out1) + out2) + \".\";\n\t\t\tout = Elements.Element.SetParameterByName(elementos[i], \"ID2_Descrição Planilha Quantidades\", descricao);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tcontinue;\n\t\t}\n\t};\n\treturn 0;\n};",
+      "Id": "a1bea98b165c4a2f94ca1e974a5bcd2c",
+      "Inputs": [
+        {
+          "Id": "b3ffefaa92a14abcbed5b45f6d98fb15",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f9e75a80af3948e69160079bfa2e1805",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3da939213fe54e579958dd92399eff98",
+          "Name": "",
+          "Description": "rotina",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1f975aeacda74d2fb6ba473ea69e3969",
+          "Name": "",
+          "Description": "Valor da expressão na linha 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\nrotina = Elements.Element.GetParameterValueByName(elementos_tipo, \"ITC_Dynamo\");\n[Imperative]\n{\n\tfor (i in 0..(List.Count(rotina)-1))\n\t{\n\t\tif (rotina[i] == \"Dy_PlanilhaBusway\")\n\t\t{\n\t\t\taux1 = Elements.Element.GetParameterValueByName(elementos_tipo[i], \"ID2_Código EAP\");\n\t\t\taux2 = Elements.Element.GetParameterValueByName(elementos[i], \"ID2_Código Sufixo\");\n\t\t\taux3 = ((aux2 != \"\" ? (\".\" + aux2) : \"\"));\n\t\t\tcodigo = (aux1 + aux3);\n\t\t\tout = Elements.Element.SetParameterByName(elementos[i], \"ID2_Código\", codigo);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tcontinue;\n\t\t}\n\t};\n\treturn 0;\n};",
+      "Id": "dd92f9c2ffe145f98830ac12974e707c",
+      "Inputs": [
+        {
+          "Id": "0a03e301c183475aa72643e78a43384d",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "cf3f17e700b6400fa5d11d8ccc2050a3",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "922420b776e747b9b6efc3991b4b9364",
+          "Name": "",
+          "Description": "rotina",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "aca7db78dfd447c78bdadbbd1b0e0ade",
+          "Name": "",
+          "Description": "Valor da expressão na linha 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\nrotina = Elements.Element.GetParameterValueByName(elementos_tipo, \"ITC_Dynamo\");\n[Imperative]\n{\n\tfor (i in 0..(List.Count(rotina)-1))\n\t{\n\t\tif (rotina[i] == \"Dy_PlanilhaBusway\")\n\t\t{\n\t\t\tdescricao_base = Elements.Element.GetParameterValueByName(elementos_tipo[i], \"ID2_Descrição\");\n\t\t\tlargura = Elements.Element.GetParameterValueByName(elementos[i], \"Largura\");\n\t\t\taltura = Elements.Element.GetParameterValueByName(elementos[i], \"Altura\");\n\t\t\tsubcategoria = Elements.Element.GetParameterValueByName(elementos[i], \"ITC_Subcategoria\");\n\t\t\t//aux1 = Elements.Element.GetParameterValueByName(elementos[i], \"PROJ_Capacidade Busway\");\n\t\t\tinstalacao = Elements.Element.GetParameterValueByName(elementos[i], \"PROJ_Instalação\");\n\n\t\t\taux1 = ((largura == 25 || largura == 0.025 ? 19 : (largura == 38 || largura == 0.038 ? 38 : (largura == 50 || largura == 0.05 ? 50 : (largura == 75 || largura == 0.075 ? 75 : (largura == 100 || largura == 0.1 ? 100 : (largura == 125 || largura == 0.125 ? 125 : (largura == 150 || largura == 0.15 ? 150 : (largura == 175 || largura == 0.175 ? 175 : (largura == 200 || largura == 0.2 ? 200 : (largura == 250 || largura == 0.25 ? 250 : (largura == 300 || largura == 0.3 ? 300 : (largura == 400 || largura == 0.4 ? 400 : (largura == 500 || largura == 0.5 ? 500 : (largura == 600 || largura == 0.6 ? 600 : (largura == 700 || largura == 0.7 ? 700 : (largura == 800 || largura == 0.8 ? 800 : (largura == 900 || largura == 0.9 ? 900 : (largura == 1000 || largura == 1 ? 1000 : \"\")))))))))))))))))));\n\t\t\taux2 = ((altura == 25 || altura == 0.025 ? 19 : (altura == 38 || altura == 0.038 ? 38 : (altura == 50 || altura == 0.05 ? 50 : (altura == 75 || altura == 0.075 ? 75 : (altura == 100 || altura == 0.1 ? 100 : (altura == 125 || altura == 0.125 ? 125 : (altura == 150 || altura == 0.15 ? 150 : (altura == 175 || altura == 0.175 ? 175 : (altura == 200 || altura == 0.2 ? 200 : (altura == 250 || altura == 0.25 ? 250 : (altura == 300 || altura == 0.3 ? 300 : (altura == 400 || altura == 0.4 ? 400 : (altura == 500 || altura == 0.5 ? 500 : (altura == 600 || altura == 0.6 ? 600 : (altura == 700 || altura == 0.7 ? 700 : (altura == 800 || altura == 0.8 ? 800 : (altura == 900 || altura == 0.9 ? 900 : (altura == 1000 || altura == 1 ? 1000 : \"\")))))))))))))))))));\n\n\t\t\tout1 = (subcategoria == \"Perfilado\" || subcategoria == \"Perfilado_Estrado\" ? ((((\" - \" + aux1) + \"x\") + aux2) + \" mm\") : (((\" - \") + aux2) + \" mm\"));\n\t\t\tout2 = (instalacao != \"\" ? (\" - \" + instalacao) : \"\");\n\t\t\tdescricao = (((descricao_base) + out1) + out2) + \".\";\n\t\t\tout = Elements.Element.SetParameterByName(elementos[i], \"ID2_Descrição Planilha Quantidades\", descricao);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tcontinue;\n\t\t}\n\t};\n\treturn 0;\n};",
+      "Id": "4e6d50e9173b452f8ee3b43010898257",
+      "Inputs": [
+        {
+          "Id": "2d13fcada3b646b5a27806bcc6deb792",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "55b2135ec0574868ada7bd0c68c46623",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a3227997e8e8445bb058aa226ee91eb9",
+          "Name": "",
+          "Description": "rotina",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "aeed600ff56c4af1a7007c687368d211",
+          "Name": "",
+          "Description": "Valor da expressão na linha 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "601d6715ade64365ae3b796c4c059be1",
+      "End": "93e3cea1963c4675b590d1c91b0b996b",
+      "Id": "a72782cbe9ab4c72ab05d82422ad2380",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "601d6715ade64365ae3b796c4c059be1",
+      "End": "39de128666df4c5ab3fada02c51e5c62",
+      "Id": "647c5ec72c5a4878816b50a6ddd1e70e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6c5df750e8914ab3b7fa0cc5ae1e3ae9",
+      "End": "bdc0469d89e04d4489b7762ddac11229",
+      "Id": "ee964693c676459cb991fa08933b9adb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b98d9ef8fed24e37be88f9d4e1789c81",
+      "End": "2593875fa64d4d95a8fd1be2de4f1ca0",
+      "Id": "d84e2aaccd2d4902b02549d7c56176d9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b98d9ef8fed24e37be88f9d4e1789c81",
+      "End": "55f814f6202b4c5eb516ab0f502b78bb",
+      "Id": "94fa2e05863541acb393b73b1ceb22c4",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "65b77825490a45e384783d069657efec",
+      "End": "130037c6510e4f328e92713df2814fcf",
+      "Id": "58cf52ea264e47718ae1af0b552a4f2a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "65b77825490a45e384783d069657efec",
+      "End": "2d13fcada3b646b5a27806bcc6deb792",
+      "Id": "0f09b13dc0d24876903f7abf43c895a0",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b6f5c8e783594d99a6a2800ad2bd8551",
+      "End": "0a03e301c183475aa72643e78a43384d",
+      "Id": "d2b20eb872c74cdcb01fdeb7f3a8d76c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b6f5c8e783594d99a6a2800ad2bd8551",
+      "End": "b3ffefaa92a14abcbed5b45f6d98fb15",
+      "Id": "2ad843e3400749dcb83693b4c6a23d1a",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.13",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "2.0",
+      "Data": {}
+    }
+  ],
+  "Author": "None provided",
+  "Linting": {
+    "activeLinter": "Nenhum",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.13.1.3887",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Visualização do plano de fundo",
+      "EyeX": -7.8233229275508265,
+      "EyeY": 91.295075176324872,
+      "EyeZ": 113.56827038981662,
+      "LookX": 26.528176888872981,
+      "LookY": -28.738858296279069,
+      "LookZ": -128.2195216295527,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "d1eb75fc36bf4a028073459a92a9fe04",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "All Elements of Category",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -5610.168537729729,
+        "Y": -2184.5454172549626
+      },
+      {
+        "Id": "be1204e4474f4e83b35bd6ece934ff9b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Categories",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -5667.7756955976884,
+        "Y": -1784.6318088016144
+      },
+      {
+        "Id": "1d4fcc5a67e6417284fd2b95bb908470",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Código",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -5239.8556608098015,
+        "Y": -2554.5924277209956
+      },
+      {
+        "Id": "1f0fe5b56e0e47daa38c98243c275ca4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Descricao Planilha de Qunatidades",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -5251.7761787532772,
+        "Y": -2077.0386466575819
+      },
+      {
+        "Id": "7dd887129f4e46a88da984b13320224c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "All Elements of Category",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -4270.770805735543,
+        "Y": -2148.423218475064
+      },
+      {
+        "Id": "a63383098e8d419685b1ba0e086f46a4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Categories",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -4321.6157354084553,
+        "Y": -1759.285200486846
+      },
+      {
+        "Id": "d55094c12ba1452aa1f746677fba69a7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Descricao Planilha de Qunatidades (falta limpar código)",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -3906.8236352726326,
+        "Y": -2073.8632268492706
+      },
+      {
+        "Id": "00de4e4d67c443358d513ce71f42f301",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Código",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -3907.9661056051496,
+        "Y": -2553.7472604131476
+      },
+      {
+        "Id": "537afedf4f044505ae5d18c7c9febf5a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "All Elements of Category",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -5607.7252127181682,
+        "Y": -948.71813442400662
+      },
+      {
+        "Id": "a1113ef976e244e9bcccb691f5d6ea98",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Código",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -5219.7846300865276,
+        "Y": -1311.4401454534486
+      },
+      {
+        "Id": "f1a447b437ab426e8d1324ba130bdc41",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Categories",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -5688.9742667682594,
+        "Y": -543.54051977454128
+      },
+      {
+        "Id": "acba81dcb0554f8c989123a5605ef11f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Categories",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -4326.3955593972123,
+        "Y": -71.270292057907
+      },
+      {
+        "Id": "a960f60e4fee461289ed871c6f451466",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "All Elements of Category",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -4285.6558232025518,
+        "Y": -495.96389588069565
+      },
+      {
+        "Id": "a1bea98b165c4a2f94ca1e974a5bcd2c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Code Block",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -3926.5318929005334,
+        "Y": -455.57502519082323
+      },
+      {
+        "Id": "dd92f9c2ffe145f98830ac12974e707c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Código",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -3927.75313561418,
+        "Y": -930.07919261554014
+      },
+      {
+        "Id": "4e6d50e9173b452f8ee3b43010898257",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Descricao Planilha de Qunatidades",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -5218.61627504764,
+        "Y": -842.24524841849916
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "cf77cb24e99543a8bb73798e424e6f28",
+        "Title": "Bandeja",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "d1eb75fc36bf4a028073459a92a9fe04",
+          "be1204e4474f4e83b35bd6ece934ff9b",
+          "1f0fe5b56e0e47daa38c98243c275ca4",
+          "1d4fcc5a67e6417284fd2b95bb908470"
+        ],
+        "HasNestedGroups": false,
+        "Left": -5677.7756955976884,
+        "Top": -2699.5924277209956,
+        "Width": 1260.9200347878868,
+        "Height": 1206.5537810634137,
+        "FontSize": 96.0,
+        "InitialTop": -2554.5924277209956,
+        "InitialHeight": 914.9606189193812,
+        "TextblockHeight": 135.0,
+        "Background": "#FFD8D8D8"
+      },
+      {
+        "Id": "28770e1c6b2d4f9a87e1c2127caa96fb",
+        "Title": "Conexões de Bandeja",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "7dd887129f4e46a88da984b13320224c",
+          "a63383098e8d419685b1ba0e086f46a4",
+          "d55094c12ba1452aa1f746677fba69a7",
+          "00de4e4d67c443358d513ce71f42f301"
+        ],
+        "HasNestedGroups": false,
+        "Left": -4331.6157354084553,
+        "Top": -2698.7472604131476,
+        "Width": 1247.7921001358227,
+        "Height": 1453.884033563877,
+        "FontSize": 96.0,
+        "InitialTop": -2553.7472604131476,
+        "InitialHeight": 939.46205992630166,
+        "TextblockHeight": 135.0,
+        "Background": "#FFD8D8D8"
+      },
+      {
+        "Id": "68c755593f244ca9815805b236fe9e73",
+        "Title": "Junta para Bandeja",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "f1a447b437ab426e8d1324ba130bdc41",
+          "537afedf4f044505ae5d18c7c9febf5a",
+          "a1113ef976e244e9bcccb691f5d6ea98",
+          "4e6d50e9173b452f8ee3b43010898257"
+        ],
+        "HasNestedGroups": false,
+        "Left": -5698.9742667682594,
+        "Top": -1456.4401454534486,
+        "Width": 1303.3579917206198,
+        "Height": 1230.1948970349495,
+        "FontSize": 96.0,
+        "InitialTop": -1311.4401454534486,
+        "InitialHeight": 912.89962567890734,
+        "TextblockHeight": 135.0,
+        "Background": "#FFD8D8D8"
+      },
+      {
+        "Id": "3802f3ef0ab844d1b477cdddfe50ab82",
+        "Title": "Junta para Conexões de Bandeja",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "acba81dcb0554f8c989123a5605ef11f",
+          "a960f60e4fee461289ed871c6f451466",
+          "a1bea98b165c4a2f94ca1e974a5bcd2c",
+          "dd92f9c2ffe145f98830ac12974e707c"
+        ],
+        "HasNestedGroups": false,
+        "Left": -4336.3955593972123,
+        "Top": -1190.0791926155403,
+        "Width": 1232.8636664966789,
+        "Height": 1432.504167424717,
+        "FontSize": 96.0,
+        "InitialTop": -930.07919261554014,
+        "InitialHeight": 1003.8089005576331,
+        "TextblockHeight": 250.0,
+        "Background": "#FFD8D8D8"
+      }
+    ],
+    "X": 5415.34632030931,
+    "Y": 2263.8289939896117,
+    "Zoom": 1.0145925312645212
+  }
+}

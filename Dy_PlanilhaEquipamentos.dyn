@@ -1,0 +1,4434 @@
+{
+  "Uuid": "e453f93e-0d02-48bb-9466-5c04cb922e29",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Dy_PlanilhaEquipamentos",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Elements.Element": {
+        "Key": "Revit.Elements.Element",
+        "Value": "RevitNodes.dll"
+      },
+      "Revit.Elements.Element": {
+        "Key": "Revit.Elements.Element",
+        "Value": "RevitNodes.dll"
+      },
+      "Math": {
+        "Key": "DSCore.Math",
+        "Value": "DSCoreNodes.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\naux1 = Elements.Element.GetParameterValueByName(elementos_tipo, \"ID_Código EAP\");\naux2 = Elements.Element.GetParameterValueByName(elementos, \"ID_Código Sufixo\");\naux3 = ((aux2 != \"\" ? (\".\" + aux2) : \"\"));\ncodigo = (aux1 + aux3);\nout = Elements.Element.SetParameterByName(elementos, \"ID_Código\", codigo);",
+      "Id": "bc35a4d1fa9843ce970253945addbb25",
+      "Inputs": [
+        {
+          "Id": "9ead558339534badb965ffd758728f9f",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "32186ae68e1149b1996a05f88f3ba951",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3ad368967e6d45ef8cf8defac2cb4bf6",
+          "Name": "",
+          "Description": "aux1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8464f8c529444da2964b7287ee7ee858",
+          "Name": "",
+          "Description": "aux2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3caab2c4d25d4ee3b1b0f19ae2dbc3d8",
+          "Name": "",
+          "Description": "aux3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "27ccfa96e5a540d59a7f4a7dbadd5f88",
+          "Name": "",
+          "Description": "codigo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "65e3912889c444389a216a99fe80a606",
+          "Name": "",
+          "Description": "out",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "3cdeff787f9145a4871c24ac9f4a13ee",
+      "Inputs": [
+        {
+          "Id": "f5e5b26edc664c938f4055d0fd5e1f1f",
+          "Name": "Category",
+          "Description": "Categoria",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "29ba0ea319c1430da2eb5bb836a2a26d",
+          "Name": "Elements",
+          "Description": "Um tipo de elemento.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obter todos os elementos da categoria especificada no modelo."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ndescricao_base = Elements.Element.GetParameterValueByName(elementos, \"ID_Descrição\");\ntag = Elements.Element.GetParameterValueByName(elementos, \"PROJ_EQP_TAG\");\ndescricao = (descricao_base + \" - \") + tag;\nout = Elements.Element.SetParameterByName(elementos, \"ID_Descrição Planilha Quantidades\", descricao);",
+      "Id": "4d5ab1253c8d4506b0fc992761bf6e1b",
+      "Inputs": [
+        {
+          "Id": "78193c2e63c94a109c26188c9a8ce0e4",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "674af58f3c6245b7b7f233d7e317ff28",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a26c73837ea84fb1a417159926a6e6ac",
+          "Name": "",
+          "Description": "descricao_base",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "311f9e62883f43068fc57d14217c9ee9",
+          "Name": "",
+          "Description": "tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "20bf25076ad2434fa3f672f268ba45ad",
+          "Name": "",
+          "Description": "descricao",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5e8e3345c6d54ca09a4d1a2d687b3f38",
+          "Name": "",
+          "Description": "out",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\naux1 = Elements.Element.GetParameterValueByName(elementos_tipo, \"ESP_Especificação Geral\");\naux2 = Elements.Element.GetParameterValueByName(elementos_tipo, \"ESP_Notas Gerais\");\naux3 = Elements.Element.GetParameterValueByName(elementos_tipo, \"ESP_Referência de Fabricante\");\nespecificacao_completa = (notas == \"\" ? ((aux1 + \" \\n\") + aux3) + \".\" : ((((aux1 + \" \\n\") + aux2) + \" \\n\") + aux3) + \".\");\nout = Elements.Element.SetParameterByName(elementos, \"ID_Especificação\", especificacao_completa);",
+      "Id": "fc8139ed24624b5e93a1c460bff933c9",
+      "Inputs": [
+        {
+          "Id": "96bbcff6c03846a4af471a3e0350192c",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "cb95ffe1e90349d79a5fca5dda034af5",
+          "Name": "notas",
+          "Description": "notas",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a637a86d0b3348a9b07e82c7fe8c6396",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "eddc190b7d6d4aab82c6b35ad3647221",
+          "Name": "",
+          "Description": "aux1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5cef720b083a4af28958f39f1e3f6653",
+          "Name": "",
+          "Description": "aux2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "386f123f60e9411eb6f0d2ef6a39d9da",
+          "Name": "",
+          "Description": "aux3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9b6f9814da1248588c98560693d933c8",
+          "Name": "",
+          "Description": "especificacao_completa",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5a8404bc3fd644b4a4e18b5bbdc120e8",
+          "Name": "",
+          "Description": "out",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 173,
+      "SelectedString": "OST_ElectricalEquipment",
+      "NodeType": "ExtensionNode",
+      "Id": "2acb231ed9fb49aabdef1ad9218ab1eb",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "391356e6068c4120ac88656744a7d4f3",
+          "Name": "Category",
+          "Description": "A categoria selecionada.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Todas as categorias incorporadas."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - TRAFO\";",
+      "Id": "e4d51bb7e1ba40bfafda624777b02118",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "749643b43151492bb07eef3827333a62",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - TRAFO - 13,8/0,38 kV (delta/Y) - 2000 kVA\";",
+      "Id": "5ef617029446421da4215218ce7f80e3",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "39a07a8f36194fc4882542c62cd49768",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - TRAFO - 4,16/0,38 kV (delta/Y) - 500 kVA\";",
+      "Id": "d243c25ee8a243808c44709907e082ba",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0c59e41796bc4c9488d2bde111ccc925",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FamilyType.ByFamilyNameAndTypeName@string,string",
+      "Id": "bd1ecedd66924b40bb374b69982dddf9",
+      "Inputs": [
+        {
+          "Id": "1801f40cc45e4123ba7c285d2e2522e6",
+          "Name": "familyName",
+          "Description": "O FamilyType é nome da família principal.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7b804ba0d14c4242b4caa04d0dc2a032",
+          "Name": "typeName",
+          "Description": "O nome do FamilyType.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b57ee28beb754b4f990f1f3f24eae276",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Selecione um FamilyType de acordo com o nome da família e o nome do tipo.\n\nFamilyType.ByFamilyNameAndTypeName (familyName: string, typeName: string): FamilyType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FamilyType.ByFamilyNameAndTypeName@string,string",
+      "Id": "32f32dc257dc49faab9f1c781c1f24c1",
+      "Inputs": [
+        {
+          "Id": "a639ae3a24cf4585911b042026a44bd4",
+          "Name": "familyName",
+          "Description": "O FamilyType é nome da família principal.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7b97e8b5c4a24eab893ab0c27a6fae3e",
+          "Name": "typeName",
+          "Description": "O nome do FamilyType.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fae41ddc336a4c0a9ec6b8572e107b2b",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Selecione um FamilyType de acordo com o nome da família e o nome do tipo.\n\nFamilyType.ByFamilyNameAndTypeName (familyName: string, typeName: string): FamilyType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[A,B];",
+      "Id": "c09540e767cb48d0a181748f73c53504",
+      "Inputs": [
+        {
+          "Id": "0a4b2e5d8644494eb499130583003474",
+          "Name": "A",
+          "Description": "A",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "cd1803f43fbc4ffd8dc2e4c96be45274",
+          "Name": "B",
+          "Description": "B",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a1fd932d8f8d43ccb67532cd34cb1c77",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ndescricao_base = Elements.Element.GetParameterValueByName(elementos, \"ID_Descrição\");\ntag = Elements.Element.GetParameterValueByName(elementos, \"PROJ_EQP_TAG\");\npot = Elements.Element.GetParameterValueByName(elementos, \"ESP_Potência Nominal\");\ntensao_primaria = Elements.Element.GetParameterValueByName(elementos, \"ESP_Tensão de Operação Primária\");\ntensao_secundaria = Elements.Element.GetParameterValueByName(elementos, \"ESP_Tensão de Operação Secundária\");\naux_desenho = Elements.Element.GetParameterValueByName(elementos, \"ESP_Desenho de Referência\");\ndesenho = (aux_desenho != \"\" ? \" - Conforme desenho: \" + aux_desenho : \" - Conforme projeto.\");\ndescricao = (((((descricao_base + \" - \") + tag) + \" - \" + pot) + \" - \" + tensao_primaria) + \" - \" + tensao_secundaria) + desenho;\nout = Elements.Element.SetParameterByName(elementos, \"ID_Descrição Planilha Quantidades\", descricao);",
+      "Id": "7568327a4ef146c9bdda0f91dc5ef127",
+      "Inputs": [
+        {
+          "Id": "3e3fd017960e48ee980a0d96df4551e2",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6be7f1ec7dd94a5c9ffaf8696c6aea6a",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9fe0e717adc046268a917475d29461f4",
+          "Name": "",
+          "Description": "descricao_base",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fc14699c4d7a454d989859912e0e6a89",
+          "Name": "",
+          "Description": "tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d482b27db72042d5b77392ceb965177d",
+          "Name": "",
+          "Description": "pot",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "71d7c7c0596545738a8fe4cf390ab9e9",
+          "Name": "",
+          "Description": "tensao_primaria",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7d7ad78c3d264b7d98640273438d33b4",
+          "Name": "",
+          "Description": "tensao_secundaria",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "98839848259942e289c00855b3eabb4a",
+          "Name": "",
+          "Description": "aux_desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1eb047b3154240589bde1e5324575bbd",
+          "Name": "",
+          "Description": "desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5573e79baa1c4b57aaab06be4b0b58f7",
+          "Name": "",
+          "Description": "descricao",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e7814f52304e4bb0a613340676da5e39",
+          "Name": "",
+          "Description": "out",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfFamilyType, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "ca86dcf7934f485fb3931ee432f139e9",
+      "Inputs": [
+        {
+          "Id": "a184e4072591434583024c25442ec324",
+          "Name": "Family Type",
+          "Description": "O tipo de família.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "60ee300682d441ffa49360c3f743ed20",
+          "Name": "Elements",
+          "Description": "Lista de elementos que coincidem com a consulta.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obter todos os elementos do tipo de família a partir do modelo."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ndescricao_base = Elements.Element.GetParameterValueByName(elementos, \"ID_Descrição\");\ntag = Elements.Element.GetParameterValueByName(elementos, \"PROJ_EQP_TAG\");\ntensao = Elements.Element.GetParameterValueByName(elementos, \"ESP_Tensão Nominal (Classe)\");\naux_desenho = Elements.Element.GetParameterValueByName(elementos, \"ESP_Desenho de Referência\");\ndesenho = (aux_desenho != \"\" ? \" - Conforme desenho: \" + aux_desenho : \" - Conforme projeto.\");\ndescricao = (((descricao_base + \" - \") + tag) + \" - \" + tensao) + desenho;\nout = Elements.Element.SetParameterByName(elementos, \"ID_Descrição Planilha Quantidades\", descricao);",
+      "Id": "95f45ce0100d444cb569982f18f18922",
+      "Inputs": [
+        {
+          "Id": "ca2896d644df49e59850d7ec7f9e4642",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f5ee471f49d6471dab5b0ac8973b3602",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1d84c3ef13a24d7abf216b19f1bafcbd",
+          "Name": "",
+          "Description": "descricao_base",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "340de613f05a43a492c811b486567f75",
+          "Name": "",
+          "Description": "tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9c2e7c6ab3f64465b23a32cf50c960cc",
+          "Name": "",
+          "Description": "tensao",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d68769fa0751420285ed2ad1bbffa2ed",
+          "Name": "",
+          "Description": "aux_desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3dd4bb57cc3f47389a190e06f0e00858",
+          "Name": "",
+          "Description": "desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ff38726b844e401791669fd413e16b3c",
+          "Name": "",
+          "Description": "descricao",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f234db969d1a468cab1152c0d3984cdf",
+          "Name": "",
+          "Description": "out",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[A,B];",
+      "Id": "712ce653233f48bc9f6cdd0e20c0e2d5",
+      "Inputs": [
+        {
+          "Id": "f8bb4174604148ad9cadccdbc3bb3e96",
+          "Name": "A",
+          "Description": "A",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c586e81583b14698b65ef95097599283",
+          "Name": "B",
+          "Description": "B",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5c0a0e3d2db74493a0fbdd09769af2b1",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfFamilyType, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "d4792b19fb514b8592c5c5627a2cf47a",
+      "Inputs": [
+        {
+          "Id": "9cc346cb0ff94d50b26fd60bbbe00ef9",
+          "Name": "Family Type",
+          "Description": "O tipo de família.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "91f252c1761844f2b2a673f75c0c685a",
+          "Name": "Elements",
+          "Description": "Lista de elementos que coincidem com a consulta.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obter todos os elementos do tipo de família a partir do modelo."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FamilyType.ByFamilyNameAndTypeName@string,string",
+      "Id": "ca129891693c45a1a95102afbb5d9107",
+      "Inputs": [
+        {
+          "Id": "d13bc00211a64980bf83d8e9d40e4d31",
+          "Name": "familyName",
+          "Description": "O FamilyType é nome da família principal.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "53a65677767f475f8533063b0a32c376",
+          "Name": "typeName",
+          "Description": "O nome do FamilyType.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "878307ae2139455784c5eddab71cf8b3",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Selecione um FamilyType de acordo com o nome da família e o nome do tipo.\n\nFamilyType.ByFamilyNameAndTypeName (familyName: string, typeName: string): FamilyType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FamilyType.ByFamilyNameAndTypeName@string,string",
+      "Id": "46c7f754b4784bdeb905cf469d8ab362",
+      "Inputs": [
+        {
+          "Id": "007779906ef8470c84bbedf0ff025a95",
+          "Name": "familyName",
+          "Description": "O FamilyType é nome da família principal.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2be9b000f2e04abba3f21dae33412af0",
+          "Name": "typeName",
+          "Description": "O nome do FamilyType.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7cc7d49f7da04807b79babd637efdc7d",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Selecione um FamilyType de acordo com o nome da família e o nome do tipo.\n\nFamilyType.ByFamilyNameAndTypeName (familyName: string, typeName: string): FamilyType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - PMT\";",
+      "Id": "622573236db84bd0b1fd19934c39ce6a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "914e70783fc5477688771c25aa40fb59",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - PAINEL DE MÉDIA TENSÃO DE PROTEÇÃO, COM DISJUNTOR - 13,8 kV\";",
+      "Id": "d8d87c95a66042f2a5b6a33559c6d985",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "08bb1ee57eb646f48e08935a45fcb700",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - PAINEL DE MÉDIA TENSÃO DE PROTEÇÃO, COM DISJUNTOR - 4,16 kV\";",
+      "Id": "5223a7814fd64aa6a8f72583adba4e81",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3b3ad06c2b594f519772683c9ab6c404",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ndescricao_base = Elements.Element.GetParameterValueByName(elementos, \"ID_Descrição\");\ntag = Elements.Element.GetParameterValueByName(elementos, \"PROJ_EQP_TAG\");\ncorrente = Elements.Element.GetParameterValueByName(elementos, \"ESP_Barramento\");\naux_desenho = Elements.Element.GetParameterValueByName(elementos, \"ESP_Desenho de Referência\");\ndesenho = (aux_desenho != \"\" ? \" - Conforme desenho: \" + aux_desenho : \" - Conforme projeto.\");\ndescricao = (((descricao_base + \" - \") + tag) + \" - \" + corrente) + desenho;\nout = Elements.Element.SetParameterByName(elementos, \"ID_Descrição Planilha Quantidades\", descricao);",
+      "Id": "6bc0d8ca9e2040849c7a4f140b6974e9",
+      "Inputs": [
+        {
+          "Id": "82bf2f7c9ab741bd907c83f86e34cc8e",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "18ce0e3d288b424d80069bbf282d8d60",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "63bda91b28a24385937dee89b2b5f9b8",
+          "Name": "",
+          "Description": "descricao_base",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e3b46c071c8a424b94237f1edcfec93d",
+          "Name": "",
+          "Description": "tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3bd5df02665a4f79aa92b8d297991647",
+          "Name": "",
+          "Description": "corrente",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e4cbea658c3440899fc37467667663dd",
+          "Name": "",
+          "Description": "aux_desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "662240a48a9c47ca8016de11db5d1e4b",
+          "Name": "",
+          "Description": "desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "62be65dd1c5c47b0bec04927b95b1f75",
+          "Name": "",
+          "Description": "descricao",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8bdb7e81387340fdb8db4426af5a801e",
+          "Name": "",
+          "Description": "out",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FamilyType.ByFamilyNameAndTypeName@string,string",
+      "Id": "60401bef433e44f8aa66e4e0a8201d36",
+      "Inputs": [
+        {
+          "Id": "801410c2d93d409790fb7484047972e2",
+          "Name": "familyName",
+          "Description": "O FamilyType é nome da família principal.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "db800d1d4aa84f60bff04f9f344c2e21",
+          "Name": "typeName",
+          "Description": "O nome do FamilyType.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "78e5da961a9340d6962c9b7dbf47534e",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Selecione um FamilyType de acordo com o nome da família e o nome do tipo.\n\nFamilyType.ByFamilyNameAndTypeName (familyName: string, typeName: string): FamilyType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - PAINEL DE TRANSFERÊNCIA AUTOMÁTICA\";",
+      "Id": "47fc7ee5b9414287a1492f3b176ca822",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a6318644be9848fa8b08f872c9011ee6",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfFamilyType, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "c13b3c8677e748dcae3bf832f1547578",
+      "Inputs": [
+        {
+          "Id": "84470bbb6c624d2789bc236fcc9449f4",
+          "Name": "Family Type",
+          "Description": "O tipo de família.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "19b2c473aa1442409c72abde2095a56b",
+          "Name": "Elements",
+          "Description": "Lista de elementos que coincidem com a consulta.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obter todos os elementos do tipo de família a partir do modelo."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - PTA\";",
+      "Id": "851cefedd28941e189702dc8160fa59d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8c8df897ef944b3594809a21a77d44f3",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ndescricao_base = Elements.Element.GetParameterValueByName(elementos, \"ID_Descrição\");\ntag = Elements.Element.GetParameterValueByName(elementos, \"PROJ_EQP_TAG\");\npot = Elements.Element.GetParameterValueByName(elementos, \"ESP_Potência Nominal\");\ntensao = Elements.Element.GetParameterValueByName(elementos, \"ESP_Tensão de Operação\");\naux_desenho = Elements.Element.GetParameterValueByName(elementos, \"ESP_Desenho de Referência\");\ndesenho = (aux_desenho != \"\" ? \" - Conforme desenho: \" + aux_desenho : \" - Conforme projeto.\");\ndescricao = ((((descricao_base + \" - \") + tag) + \" - \" + pot) + \" - \" + tensao) + desenho;\nout = Elements.Element.SetParameterByName(elementos, \"ID_Descrição Planilha Quantidades\", descricao);",
+      "Id": "35f8abb14b4a4022bf3e46ff5aa3434a",
+      "Inputs": [
+        {
+          "Id": "bae66645bc504b99a913ccf18cc07104",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0d37bc16fc2041cb85990ee21adbb968",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b911104e65874444ba758a489a7a8fc3",
+          "Name": "",
+          "Description": "descricao_base",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "538b3cc7d305455f89495ace161c059f",
+          "Name": "",
+          "Description": "tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e4746f283cf542c59578cf95ee10d66e",
+          "Name": "",
+          "Description": "pot",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c8c7f2c72bea40b8ac40b9a994ef0f1d",
+          "Name": "",
+          "Description": "tensao",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "63188beb9c414251aad02c52c86ef7da",
+          "Name": "",
+          "Description": "aux_desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0f4b8f2c1fa4427fafc8d4551c14e808",
+          "Name": "",
+          "Description": "desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8ac96ab240cb448e9b410d00599493e9",
+          "Name": "",
+          "Description": "descricao",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5deaf24874304fd681629c8c011fd2e7",
+          "Name": "",
+          "Description": "out",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfFamilyType, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "69a41b3c695e459cbdced79e8043c71a",
+      "Inputs": [
+        {
+          "Id": "d57acb454bed4260a7cb64e96a4c028c",
+          "Name": "Family Type",
+          "Description": "O tipo de família.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6d2051b4fd1744d9a8b6a1e1bf16c2b9",
+          "Name": "Elements",
+          "Description": "Lista de elementos que coincidem com a consulta.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obter todos os elementos do tipo de família a partir do modelo."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FamilyType.ByFamilyNameAndTypeName@string,string",
+      "Id": "4eb1725f455d4716a5329173dda30eba",
+      "Inputs": [
+        {
+          "Id": "1bd5896852d74490a635532712b72370",
+          "Name": "familyName",
+          "Description": "O FamilyType é nome da família principal.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7385dd397d4a42ef953335344f771b41",
+          "Name": "typeName",
+          "Description": "O nome do FamilyType.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "65050a7134814af18c4b2beed0e95d64",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Selecione um FamilyType de acordo com o nome da família e o nome do tipo.\n\nFamilyType.ByFamilyNameAndTypeName (familyName: string, typeName: string): FamilyType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - GMG 2\";",
+      "Id": "8533d00a616d4f6ab7e637830e1791a4",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "241f5849d86d492b89cecb6c2785e665",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"Standard\";",
+      "Id": "569b9e42724a4fbc96f0598b44632d89",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "66e2760408074b5fabe065fe3c74f620",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ndescricao_base = Elements.Element.GetParameterValueByName(elementos, \"ID_Descrição\");\ntag = Elements.Element.GetParameterValueByName(elementos, \"PROJ_EQP_TAG\");\ntensao = Elements.Element.GetParameterValueByName(elementos, \"ESP_Tensão de Saída\");\ncorrente = Elements.Element.GetParameterValueByName(elementos, \"ESP_Corrente de Saída\");\naux_desenho = Elements.Element.GetParameterValueByName(elementos, \"ESP_Desenho de Referência\");\ndesenho = (aux_desenho != \"\" ? \" - Conforme desenho: \" + aux_desenho : \" - Conforme projeto.\");\ndescricao = ((((descricao_base + \" - \") + tag) + \" - \" + tensao) + \" - \" + corrente) + desenho;\nout = Elements.Element.SetParameterByName(elementos, \"ID_Descrição Planilha Quantidades\", descricao);",
+      "Id": "5445a4cc7ec64a308e4521b9677ec10f",
+      "Inputs": [
+        {
+          "Id": "26fd9f1f17a5458b86848d4a67bcfd8c",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a4c05edd7a1d4d4fbeb51e1e37c8ebca",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4d5dd1ebbe784bf0afcb1ba0a6c86ac1",
+          "Name": "",
+          "Description": "descricao_base",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "56eac1cfbb09428bb1f9ebe70c9b8f82",
+          "Name": "",
+          "Description": "tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c2a84ffc78414bcf8a63986bc55c3a7f",
+          "Name": "",
+          "Description": "tensao",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6797dd4be8224b5e8878f1526c5f84c4",
+          "Name": "",
+          "Description": "corrente",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "930d6d407e49490581818a181742d928",
+          "Name": "",
+          "Description": "aux_desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f547642391494b7385579a32ae677764",
+          "Name": "",
+          "Description": "desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1b415b7cd6bd482796412de4fec37299",
+          "Name": "",
+          "Description": "descricao",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2fc72c0a56d04e73bd653254993fa019",
+          "Name": "",
+          "Description": "out",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfFamilyType, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "d3d03894807647dfbe32cc56ef9a4593",
+      "Inputs": [
+        {
+          "Id": "68cbb27457c0495f8fa081e91a6fe93f",
+          "Name": "Family Type",
+          "Description": "O tipo de família.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5cb52871101d4c898ad79fe6a4e41429",
+          "Name": "Elements",
+          "Description": "Lista de elementos que coincidem com a consulta.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obter todos os elementos do tipo de família a partir do modelo."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FamilyType.ByFamilyNameAndTypeName@string,string",
+      "Id": "15db7acf81fa42b58df4742269d07769",
+      "Inputs": [
+        {
+          "Id": "1523caf622654410866e8a2f235803a1",
+          "Name": "familyName",
+          "Description": "O FamilyType é nome da família principal.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "10145f6d95b14df799eafa7f00f26bac",
+          "Name": "typeName",
+          "Description": "O nome do FamilyType.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0b80bdb0dad540d6abd8237e814e1e26",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Selecione um FamilyType de acordo com o nome da família e o nome do tipo.\n\nFamilyType.ByFamilyNameAndTypeName (familyName: string, typeName: string): FamilyType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - URF\";",
+      "Id": "c87342ae0c0e4f12864d5c1e30c4373c",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "43c61b17b1dc4e85b6a5c8c4eb4f05c5",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - UNIDADE RETIFICADORA MODULAR, 12 PULSOS\";",
+      "Id": "88e6115f42514c398151d346f74f8eb3",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "09c1877fc2e74207a27d78a7872b1e24",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ndescricao_base = Elements.Element.GetParameterValueByName(elementos, \"ID_Descrição\");\ntag = Elements.Element.GetParameterValueByName(elementos, \"PROJ_EQP_TAG\");\npot = Elements.Element.GetParameterValueByName(elementos, \"ESP_Potência Nominal\");\nautonomia = Elements.Element.GetParameterValueByName(elementos, \"ESP_Autonomia\");\naux_desenho = Elements.Element.GetParameterValueByName(elementos, \"ESP_Desenho de Referência\");\ndesenho = (aux_desenho != \"\" ? \" - Conforme desenho: \" + aux_desenho : \" - Conforme projeto.\");\ndescricao = ((((descricao_base + \" - \") + tag) + \" - \" + pot) + \" - \" + autonomia) + desenho;\nout = Elements.Element.SetParameterByName(elementos, \"ID_Descrição Planilha Quantidades\", descricao);",
+      "Id": "44f2cdffc7eb4c93b9593c68bc0ba926",
+      "Inputs": [
+        {
+          "Id": "e7d49f52e69c46cb9b2cb42d9f96eb93",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c7eacd108a824f70a01d5f96dd7043cf",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "df8f9f50a31f4ceeafe36733b7b21b9b",
+          "Name": "",
+          "Description": "descricao_base",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "19828f85366a4cfe8ca967ec742e89c1",
+          "Name": "",
+          "Description": "tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7ba3ab0777c44d0f94ebd6bb01339e17",
+          "Name": "",
+          "Description": "pot",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ca6ad2c897c54854b499b1db2dd90767",
+          "Name": "",
+          "Description": "autonomia",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "935809dff3e14c57b3b497fa6c0b51bf",
+          "Name": "",
+          "Description": "aux_desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "29880e625cf84664aa48c29913e8a5d6",
+          "Name": "",
+          "Description": "desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e26bfabef620475eb89882f24a211ea8",
+          "Name": "",
+          "Description": "descricao",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6651ae2e5d41496e85f99653c90e9cab",
+          "Name": "",
+          "Description": "out",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FamilyType.ByFamilyNameAndTypeName@string,string",
+      "Id": "ecf233c081a54806bd3876a933deccd5",
+      "Inputs": [
+        {
+          "Id": "f27bc7ac49084b31853dc9ac101e5864",
+          "Name": "familyName",
+          "Description": "O FamilyType é nome da família principal.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "924c4557ff22443ca835a2332a2642e2",
+          "Name": "typeName",
+          "Description": "O nome do FamilyType.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "72a7872ce2a7450886ecce680a947a80",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Selecione um FamilyType de acordo com o nome da família e o nome do tipo.\n\nFamilyType.ByFamilyNameAndTypeName (familyName: string, typeName: string): FamilyType"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfFamilyType, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "b960d13a21ad4022b896ad8c64d80608",
+      "Inputs": [
+        {
+          "Id": "30d4796cadf642489d77ec4632f58f95",
+          "Name": "Family Type",
+          "Description": "O tipo de família.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a732935d9d2f42cbbc4a8da228918c8a",
+          "Name": "Elements",
+          "Description": "Lista de elementos que coincidem com a consulta.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obter todos os elementos do tipo de família a partir do modelo."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - BATERIA VRLA\";",
+      "Id": "46bcc792c975458a9dd909aa43bcbe15",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0fe0cbc136744c57950d3bd52ea7cb97",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - BATERIA ESTACIONÁRIA REGULADA POR VÁLVULA\";",
+      "Id": "bd3ebb8d13dc45a18cb39aa4ccb68e94",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9b295909d3e745a98fac79058705ac0e",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ndescricao_base = Elements.Element.GetParameterValueByName(elementos, \"ID_Descrição\");\ntag = Elements.Element.GetParameterValueByName(elementos, \"PROJ_EQP_TAG\");\npot = Elements.Element.GetParameterValueByName(elementos, \"ESP_Potência Nominal\");\ntensao = Elements.Element.GetParameterValueByName(elementos, \"ESP_Tensão de Operação\");\naux_desenho = Elements.Element.GetParameterValueByName(elementos, \"ESP_Desenho de Referência\");\ndesenho = (aux_desenho != \"\" ? \" - Conforme desenho: \" + aux_desenho : \" - Conforme projeto.\");\ndescricao = ((((descricao_base + \" - \") + tag) + \" - \" + pot) + \" - \" + tensao) + desenho;\nout = Elements.Element.SetParameterByName(elementos, \"ID_Descrição Planilha Quantidades\", descricao);",
+      "Id": "036e14c8000340c79ea7ef79c055ea43",
+      "Inputs": [
+        {
+          "Id": "2a03268f3d7d44728d6ad234bc6d0545",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0fce557034ae4289a918e7d7fcfb53c9",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "02b423ec3018408ea99896b310ef2156",
+          "Name": "",
+          "Description": "descricao_base",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a23fb605143d4af88b349318168af0b3",
+          "Name": "",
+          "Description": "tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9b7ec619bf1c400bb55723a91dc13ea1",
+          "Name": "",
+          "Description": "pot",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b905456dbc734e3594c79780e5fab5ea",
+          "Name": "",
+          "Description": "tensao",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "080f119a1cef42cda80719f7695940c7",
+          "Name": "",
+          "Description": "aux_desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "59d9d3f6d19b44d6b53a4a953b4730a1",
+          "Name": "",
+          "Description": "desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5d2794b473df4c03a9a739523aa0b1d0",
+          "Name": "",
+          "Description": "descricao",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8107b8bd923e47c3925f5c9f9877c95f",
+          "Name": "",
+          "Description": "out",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfFamilyType, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "f742fea7a554460585a6949249aba5e8",
+      "Inputs": [
+        {
+          "Id": "df6562d74cc74bc39dec5f733c296417",
+          "Name": "Family Type",
+          "Description": "O tipo de família.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "03252468ad86462485d7c4a4a5a3a542",
+          "Name": "Elements",
+          "Description": "Lista de elementos que coincidem com a consulta.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obter todos os elementos do tipo de família a partir do modelo."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FamilyType.ByFamilyNameAndTypeName@string,string",
+      "Id": "37a61a2f32e94913b56aa577ee9ad021",
+      "Inputs": [
+        {
+          "Id": "316dd0a2f21f4bd7a6d685f9646e83ce",
+          "Name": "familyName",
+          "Description": "O FamilyType é nome da família principal.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "29c8ddf48ab34eb3ab1768a71167915b",
+          "Name": "typeName",
+          "Description": "O nome do FamilyType.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "edd426dede1c4a92b915cbb8bf450fa4",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Selecione um FamilyType de acordo com o nome da família e o nome do tipo.\n\nFamilyType.ByFamilyNameAndTypeName (familyName: string, typeName: string): FamilyType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - BANCO DE CAPACITORES\";",
+      "Id": "e554257b8aee4ab98f7b2d78904e0c6d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "eb6c2709bb05445b8121abce5279b15c",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - BC\";",
+      "Id": "eb9ffd30ac7645e78ffde97a73b55c2b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c3349cb51478489ba2b70a9b41646698",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ndescricao_base = Elements.Element.GetParameterValueByName(elementos, \"ID_Descrição\");\ntag = Elements.Element.GetParameterValueByName(elementos, \"PROJ_EQP_TAG\");\ncorrente = Elements.Element.GetParameterValueByName(elementos, \"ESP_Corrente de Saída\");\naux_desenho = Elements.Element.GetParameterValueByName(elementos, \"ESP_Desenho de Referência\");\ndesenho = (aux_desenho != \"\" ? \" - Conforme desenho: \" + aux_desenho : \" - Conforme projeto.\");\ndescricao = (((descricao_base + \" - \") + tag) + \" - \" + corrente) + desenho;\nout = Elements.Element.SetParameterByName(elementos, \"ID_Descrição Planilha Quantidades\", descricao);",
+      "Id": "3c038bc53e5449abb87940363e6fe50a",
+      "Inputs": [
+        {
+          "Id": "4c170a67f86643e38ac115fed753cb39",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a2b1d817e654492ca7d49e1535ab67f2",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "09b268aa04b644459c76b3876753cfa0",
+          "Name": "",
+          "Description": "descricao_base",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3207b5f9b3ac41c8b261995bd9da71c8",
+          "Name": "",
+          "Description": "tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4f544a7b75b34700897b9e4c7e27d0a4",
+          "Name": "",
+          "Description": "corrente",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7fd10520cd474232934fc050b0268039",
+          "Name": "",
+          "Description": "aux_desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6b4b2021c3c44525ad23b8380ab878b1",
+          "Name": "",
+          "Description": "desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7fe964148b534eaba0c7aa5ba81f4187",
+          "Name": "",
+          "Description": "descricao",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9a8115f372f84e6e8629c153ad8a3241",
+          "Name": "",
+          "Description": "out",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FamilyType.ByFamilyNameAndTypeName@string,string",
+      "Id": "f91cfceb6fe04f60a74a7cda2c8769a3",
+      "Inputs": [
+        {
+          "Id": "13f61dae18064fd2808fdaf7fdea28cb",
+          "Name": "familyName",
+          "Description": "O FamilyType é nome da família principal.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "955e4f42fc514e278e42db3831c4b933",
+          "Name": "typeName",
+          "Description": "O nome do FamilyType.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2e2854e2fc51401fb0d838eb0da84b9f",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Selecione um FamilyType de acordo com o nome da família e o nome do tipo.\n\nFamilyType.ByFamilyNameAndTypeName (familyName: string, typeName: string): FamilyType"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfFamilyType, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "6c879f30821449788e6fea1b4357ccba",
+      "Inputs": [
+        {
+          "Id": "7d9e3f27a7d54bbeb770bc8fefb96958",
+          "Name": "Family Type",
+          "Description": "O tipo de família.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "628dd640f6934e5baed1ffaa21c9ec31",
+          "Name": "Elements",
+          "Description": "Lista de elementos que coincidem com a consulta.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obter todos os elementos do tipo de família a partir do modelo."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - CHAVE ESTÁTICA DE TRANSFERÊNCIA AUTOMÁTICA\";",
+      "Id": "18683c0a89d24876b649b4ec25d6f220",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0cbc97d562e74d868faa4281dd05f902",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - CHE\";",
+      "Id": "fcc7f15e54054fa285a236bda9123473",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a30b1496b4d14412b95da7e30df26de0",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ndescricao_base = Elements.Element.GetParameterValueByName(elementos, \"ID_Descrição\");\ntag = Elements.Element.GetParameterValueByName(elementos, \"PROJ_EQP_TAG\");\ncorrente = Elements.Element.GetParameterValueByName(elementos, \"ESP_Barramento\");\naux_desenho = Elements.Element.GetParameterValueByName(elementos, \"ESP_Desenho de Referência\");\ndesenho = (aux_desenho != \"\" ? \" - Conforme desenho: \" + aux_desenho : \" - Conforme projeto.\");\ndescricao = (((descricao_base + \" - \") + tag) + \" - \" + corrente) + desenho;\nout = Elements.Element.SetParameterByName(elementos, \"ID_Descrição Planilha Quantidades\", descricao);",
+      "Id": "a94c5b1e4a474a498280d16c716d4371",
+      "Inputs": [
+        {
+          "Id": "b8f29363d72d432fae190cf7e493bfbb",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ecfef835fbb440c1862b925e6adc826b",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c8b7caa6419d4923acebd8dd4d5efa18",
+          "Name": "",
+          "Description": "descricao_base",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e280e8381d2849548cb6da996cefa28e",
+          "Name": "",
+          "Description": "tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c95e8f8324164f6ea1aadd663ae89e4e",
+          "Name": "",
+          "Description": "corrente",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7d475f5ba3fb41dd8e4d427aef7cf933",
+          "Name": "",
+          "Description": "aux_desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dbc2373c85f94693917e17aebbab4ac9",
+          "Name": "",
+          "Description": "desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1693a7b37dcf41b7bded59d9c7f610bb",
+          "Name": "",
+          "Description": "descricao",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f30924cbdc434d5b9a45c4c2330d5ecb",
+          "Name": "",
+          "Description": "out",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FamilyType.ByFamilyNameAndTypeName@string,string",
+      "Id": "99da9020586d420d95b8c0e5a2530c96",
+      "Inputs": [
+        {
+          "Id": "b277986eddb04e508739499c42b891cd",
+          "Name": "familyName",
+          "Description": "O FamilyType é nome da família principal.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ccd7b9a382e04cc686ed116eab05e477",
+          "Name": "typeName",
+          "Description": "O nome do FamilyType.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c5924a194e64485db7b894f40453ac71",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Selecione um FamilyType de acordo com o nome da família e o nome do tipo.\n\nFamilyType.ByFamilyNameAndTypeName (familyName: string, typeName: string): FamilyType"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfFamilyType, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "7a3934bf54704c359b8e5573785bfbad",
+      "Inputs": [
+        {
+          "Id": "8e296ba1df0e495e8be0e3a2e8bf6ac8",
+          "Name": "Family Type",
+          "Description": "O tipo de família.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c12eb0e204394952b0a9f9db05212dd5",
+          "Name": "Elements",
+          "Description": "Lista de elementos que coincidem com a consulta.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obter todos os elementos do tipo de família a partir do modelo."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - PAINEL DE DISTRIBUIÇÃO EM BAIXA TENSÃO\";",
+      "Id": "9f1331fcc5a240808615e52567f74b1f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f4b831a1066747799ca7e6814fa23f71",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - PBT\";",
+      "Id": "87544c812f4b408281cf9df66141f8ef",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9014026bc6ac4293aabd863e9337f151",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ndescricao_base = Elements.Element.GetParameterValueByName(elementos, \"ID_Descrição\");\ntag = Elements.Element.GetParameterValueByName(elementos, \"PROJ_EQP_TAG\");\naux_desenho = Elements.Element.GetParameterValueByName(elementos, \"ESP_Desenho de Referência\");\ndesenho = (aux_desenho != \"\" ? \" - Conforme desenho: \" + aux_desenho : \" - Conforme projeto.\");\ndescricao = ((descricao_base + \" - \") + tag) + desenho;\nout = Elements.Element.SetParameterByName(elementos, \"ID_Descrição Planilha Quantidades\", descricao);",
+      "Id": "898dc32cc11843dd8c78041d701d66ab",
+      "Inputs": [
+        {
+          "Id": "d36a897344844496b9c9486105ff3015",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b2a9294605674bcf880c3eec1fc6cfc2",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c6a1cc36bd264ffd837ea95ec00a5fce",
+          "Name": "",
+          "Description": "descricao_base",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "237c9b4bc8b04fcd837871427e1dab4b",
+          "Name": "",
+          "Description": "tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fa278b0c3a6b48668d4b4c73d28b1a3c",
+          "Name": "",
+          "Description": "aux_desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5a4aaacc271b46f88400140becab08e3",
+          "Name": "",
+          "Description": "desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0545657bc1944363bbd7dcc458d77efb",
+          "Name": "",
+          "Description": "descricao",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f9331c0e922d498fba4081668b40dd51",
+          "Name": "",
+          "Description": "out",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfFamilyType, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "b522d56119d548ecb8f8a85ce5bd9284",
+      "Inputs": [
+        {
+          "Id": "39074028e4ca46c8b22e77ce21584e89",
+          "Name": "Family Type",
+          "Description": "O tipo de família.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1daa6e3466c0421483528de104db8881",
+          "Name": "Elements",
+          "Description": "Lista de elementos que coincidem com a consulta.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obter todos os elementos do tipo de família a partir do modelo."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FamilyType.ByFamilyNameAndTypeName@string,string",
+      "Id": "06f739a0d11f464eb6952866083400dc",
+      "Inputs": [
+        {
+          "Id": "9805e09589024140ada6b2052c6eba1b",
+          "Name": "familyName",
+          "Description": "O FamilyType é nome da família principal.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7128c259b0dc4cbfb6ac52c615587fcb",
+          "Name": "typeName",
+          "Description": "O nome do FamilyType.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f364b16ee2a84ae78a5f919ec68e0277",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Selecione um FamilyType de acordo com o nome da família e o nome do tipo.\n\nFamilyType.ByFamilyNameAndTypeName (familyName: string, typeName: string): FamilyType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - QUADRO GERAL DE BAIXA TENSÃO\";",
+      "Id": "14b4df0882fa46b0b09b39999d6c98be",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f7de851d104f430b8ba5d7d2a7a2f71c",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - QGBT\";",
+      "Id": "5f829f722beb4131a118aa207d882342",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "74df1a1036e24440bedd0cfc33bb0c11",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - QUADRO DE DISTRIBUIÇÃO DE FORÇA E LUZ\";",
+      "Id": "e0bf277d2d0d49779303f2ab5a600134",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6b7ebab9dfdd4465bb3a716f292d9f83",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FamilyType.ByFamilyNameAndTypeName@string,string",
+      "Id": "a7a3a69b7f1d4584acdeb64fab7a03fd",
+      "Inputs": [
+        {
+          "Id": "45400c81a0d44a288a5b860d11aca238",
+          "Name": "familyName",
+          "Description": "O FamilyType é nome da família principal.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8e0ddb24493c4dbfa7eac46c6900312d",
+          "Name": "typeName",
+          "Description": "O nome do FamilyType.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8e8c682b1fca492395d2ea894f0e108f",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Selecione um FamilyType de acordo com o nome da família e o nome do tipo.\n\nFamilyType.ByFamilyNameAndTypeName (familyName: string, typeName: string): FamilyType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - QDFL\";",
+      "Id": "edff14ed7f8944848676d3c3d82ca793",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fb3c8e13d8754884bca4bd8857bdb1ea",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - QUADRO DE DISTRIBUIÇÃO DE LUZ\";",
+      "Id": "b110c4a3e82d4dfea33ce3ebf4d60351",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f946b1c7e2f34cf5bc42104b6dc29251",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FamilyType.ByFamilyNameAndTypeName@string,string",
+      "Id": "fba5a96a296e495eaaafc5d65c535e6a",
+      "Inputs": [
+        {
+          "Id": "a8479c39965e4851ad8f7c8334a3521c",
+          "Name": "familyName",
+          "Description": "O FamilyType é nome da família principal.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a53bfb3887064accac2f35c58f6f3225",
+          "Name": "typeName",
+          "Description": "O nome do FamilyType.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "11470ebeac5c4de0bfe19105861bd1ff",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Selecione um FamilyType de acordo com o nome da família e o nome do tipo.\n\nFamilyType.ByFamilyNameAndTypeName (familyName: string, typeName: string): FamilyType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - QDL\";",
+      "Id": "370da914aac6450985fcff430bd5b981",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f794806f5a8a44d58c8e5b9fab14fd45",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - QUADRO DE FORÇA E COMANDO DE MOTOR-BOMBA\";",
+      "Id": "237868b0c8304a03ae3de87d5d051815",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "37d5643c32bf41129b86894e7ef77a36",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FamilyType.ByFamilyNameAndTypeName@string,string",
+      "Id": "b4786977cecf4d5780388be96a3955e0",
+      "Inputs": [
+        {
+          "Id": "912a7e838e7845659a77a7e3a2963a81",
+          "Name": "familyName",
+          "Description": "O FamilyType é nome da família principal.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "93b01a1bcac64539a3b8bdb69d1d94fa",
+          "Name": "typeName",
+          "Description": "O nome do FamilyType.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e779f6d896ea4266a908f7899cabc84d",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Selecione um FamilyType de acordo com o nome da família e o nome do tipo.\n\nFamilyType.ByFamilyNameAndTypeName (familyName: string, typeName: string): FamilyType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - QCM\";",
+      "Id": "6dbec247a7a947c48c16db9f315de60e",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "634a80e253fe45589875f303dff14ecf",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[A,B,C,D,E];",
+      "Id": "956d8bce7b694b56b657ebf5b5aac465",
+      "Inputs": [
+        {
+          "Id": "c87e3f19118844f7b3ff517965d1279e",
+          "Name": "A",
+          "Description": "A",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "cefa5664633e4350978c8c76e0ec3470",
+          "Name": "B",
+          "Description": "B",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d4fdc64e6e3845c39d93fabd89ffde58",
+          "Name": "C",
+          "Description": "C",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "56d6f633492c4be98d02e1967679cf5a",
+          "Name": "D",
+          "Description": "D",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "561f776b97434c1bbaed5fcd22b49b50",
+          "Name": "E",
+          "Description": "E",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8d4dabc811e64a90a35abcefacd52651",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FamilyType.ByFamilyNameAndTypeName@string,string",
+      "Id": "918c4539ee234e04b89b08e99f2bc3ce",
+      "Inputs": [
+        {
+          "Id": "af5ee1fb42fb431e95c93085502f79c7",
+          "Name": "familyName",
+          "Description": "O FamilyType é nome da família principal.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3199b6ef0655426ab5fd2a704f1cb729",
+          "Name": "typeName",
+          "Description": "O nome do FamilyType.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c8ff59ea83bb46909bfa735848418b5b",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Selecione um FamilyType de acordo com o nome da família e o nome do tipo.\n\nFamilyType.ByFamilyNameAndTypeName (familyName: string, typeName: string): FamilyType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - QUADRO DE DISTRIBUIÇÃO DE CORRENTE CONTÍNUA\";",
+      "Id": "d621d05924c94d7fac58e9bb62144807",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b50655d037d84ddea58acf60e8424421",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - QDCC\";",
+      "Id": "4f4914230899462a84388c8edb1356f4",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5c39258352504ad1806ae8c542000e6c",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - UPS\";",
+      "Id": "c717a1ffcfc54613856952db02e34364",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a6f47b4bc12f44268c87f517f8b1ec8d",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"EQP - ELE - SISTEMA ININTERRUPTO DE ENERGIA ESTÁTICA MODULAR\";",
+      "Id": "7ce474833fa74cc9a7df922a3c29a21c",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "53251bc960064f2ba7d5b8bac06690c4",
+          "Name": "",
+          "Description": "Valor da expressão na linha 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.FamilyType.ByFamilyNameAndTypeName@string,string",
+      "Id": "d89efd41b39149318f5a5c5d93be2a4b",
+      "Inputs": [
+        {
+          "Id": "f1f167c60cba438ba59e2c7387594dc1",
+          "Name": "familyName",
+          "Description": "O FamilyType é nome da família principal.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e54822dcef2c4a2ca73e68fa96021f5c",
+          "Name": "typeName",
+          "Description": "O nome do FamilyType.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "78ddbb56236947c2822c238549849ff7",
+          "Name": "FamilyType",
+          "Description": "FamilyType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Selecione um FamilyType de acordo com o nome da família e o nome do tipo.\n\nFamilyType.ByFamilyNameAndTypeName (familyName: string, typeName: string): FamilyType"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfFamilyType, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "4931fb6cedcd49c9aa4b03cc86413b75",
+      "Inputs": [
+        {
+          "Id": "8d54c262df4441f0a5854556752d03f0",
+          "Name": "Family Type",
+          "Description": "O tipo de família.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a5801aae2a964fa4b2c5965c68a0363e",
+          "Name": "Elements",
+          "Description": "Lista de elementos que coincidem com a consulta.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obter todos os elementos do tipo de família a partir do modelo."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ndescricao_base = Elements.Element.GetParameterValueByName(elementos, \"ID_Descrição\");\ntag = Elements.Element.GetParameterValueByName(elementos, \"PROJ_EQP_TAG\");\ntensao = Elements.Element.GetParameterValueByName(elementos, \"ESP_Tensão de Operação\");\nconfiguracao = Elements.Element.GetParameterValueByName(elementos, \"ESP_Configuração\");\npotencia = Elements.Element.GetParameterValueByName(elementos, \"ESP_Potência por Módulo\");\naux_desenho = Elements.Element.GetParameterValueByName(elementos, \"ESP_Desenho de Referência\");\ndesenho = (aux_desenho != \"\" ? \" - Conforme desenho: \" + aux_desenho : \" - Conforme projeto.\");\ndescricao = ((((descricao_base + \" - \") + tag) + \" - \" + tensao) + \" - \" + \"Configuração: \" + configuracao + \" (\" + potencia + \" cada módulo)\") + desenho;\nout = Elements.Element.SetParameterByName(elementos, \"ID_Descrição Planilha Quantidades\", descricao);",
+      "Id": "8e9e3af1b0644df7ba802defb3c20d66",
+      "Inputs": [
+        {
+          "Id": "95ff001c46f14c2cb039bbbf13dfba22",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6bbeb859c8224a658766bef4e7b6ef53",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "cc0a22e6f214433eaff2c4eb9c67a0db",
+          "Name": "",
+          "Description": "descricao_base",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6bec2e1c6d2f49af8ef9b61c9c4a59b0",
+          "Name": "",
+          "Description": "tag",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "26bf2a91066843cdb956993fe1edfaab",
+          "Name": "",
+          "Description": "tensao",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a2707611a5d544aab5bd9ac30a0268ed",
+          "Name": "",
+          "Description": "configuracao",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5f801af7239d47df9037ecf19fcdf684",
+          "Name": "",
+          "Description": "potencia",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ac35e7ceab4341db88c7ad72d97ed0cd",
+          "Name": "",
+          "Description": "aux_desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e3cde8c1feee493f89284660aed0278c",
+          "Name": "",
+          "Description": "desenho",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0cb438b51eb24ef9a05743757532162e",
+          "Name": "",
+          "Description": "descricao",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1810bbcaf7e54f3aa9b694b1ca1e31cd",
+          "Name": "",
+          "Description": "out",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "29ba0ea319c1430da2eb5bb836a2a26d",
+      "End": "9ead558339534badb965ffd758728f9f",
+      "Id": "37b9a13c0cc34acd86fbe91b34239a7e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "29ba0ea319c1430da2eb5bb836a2a26d",
+      "End": "96bbcff6c03846a4af471a3e0350192c",
+      "Id": "fb9d7b6529cb4032b62bf0c4a90330c2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "391356e6068c4120ac88656744a7d4f3",
+      "End": "f5e5b26edc664c938f4055d0fd5e1f1f",
+      "Id": "376ec42fe684417c89acbabaa2b9845b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "749643b43151492bb07eef3827333a62",
+      "End": "1801f40cc45e4123ba7c285d2e2522e6",
+      "Id": "2baa8f87574345939bb2dbaef60f65c9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "749643b43151492bb07eef3827333a62",
+      "End": "a639ae3a24cf4585911b042026a44bd4",
+      "Id": "c2e2c97162f8464088d8ad0bdcb6ea9d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "39a07a8f36194fc4882542c62cd49768",
+      "End": "7b97e8b5c4a24eab893ab0c27a6fae3e",
+      "Id": "4a691b313bdd4bd4b192b7f72940054e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0c59e41796bc4c9488d2bde111ccc925",
+      "End": "7b804ba0d14c4242b4caa04d0dc2a032",
+      "Id": "b1ef52d204364442adaa93300ae2f926",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b57ee28beb754b4f990f1f3f24eae276",
+      "End": "cd1803f43fbc4ffd8dc2e4c96be45274",
+      "Id": "56038bb3439549718258e7b90329a54a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "fae41ddc336a4c0a9ec6b8572e107b2b",
+      "End": "0a4b2e5d8644494eb499130583003474",
+      "Id": "74ab0f3f75bb4467ab8afff7557765ec",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a1fd932d8f8d43ccb67532cd34cb1c77",
+      "End": "a184e4072591434583024c25442ec324",
+      "Id": "c4c04ec748614803bb270375640e557b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "60ee300682d441ffa49360c3f743ed20",
+      "End": "3e3fd017960e48ee980a0d96df4551e2",
+      "Id": "e56e5655114743fba4c3674e6d668e00",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5c0a0e3d2db74493a0fbdd09769af2b1",
+      "End": "9cc346cb0ff94d50b26fd60bbbe00ef9",
+      "Id": "1bab792d94a74b5c97e0bedf6d272bc2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "91f252c1761844f2b2a673f75c0c685a",
+      "End": "ca2896d644df49e59850d7ec7f9e4642",
+      "Id": "39867024bdcb40f8a1dfba35bbc3b954",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "878307ae2139455784c5eddab71cf8b3",
+      "End": "c586e81583b14698b65ef95097599283",
+      "Id": "24780d1b46cc414786cc4923ab89ea95",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "7cc7d49f7da04807b79babd637efdc7d",
+      "End": "f8bb4174604148ad9cadccdbc3bb3e96",
+      "Id": "9c5dabc4794b4424835787dd4c2ce7a7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "914e70783fc5477688771c25aa40fb59",
+      "End": "d13bc00211a64980bf83d8e9d40e4d31",
+      "Id": "73390dab64b240438964a1785e296c6e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "914e70783fc5477688771c25aa40fb59",
+      "End": "007779906ef8470c84bbedf0ff025a95",
+      "Id": "ae160af25f38412188c63f5e2cc1538c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "08bb1ee57eb646f48e08935a45fcb700",
+      "End": "2be9b000f2e04abba3f21dae33412af0",
+      "Id": "b4550dedbe33415586e0898074df36f9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3b3ad06c2b594f519772683c9ab6c404",
+      "End": "53a65677767f475f8533063b0a32c376",
+      "Id": "ea93984f1a36484aa63a5c24200ca6fb",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "78e5da961a9340d6962c9b7dbf47534e",
+      "End": "84470bbb6c624d2789bc236fcc9449f4",
+      "Id": "63bc992192344454964e635f19a3f3b1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a6318644be9848fa8b08f872c9011ee6",
+      "End": "db800d1d4aa84f60bff04f9f344c2e21",
+      "Id": "50a709bf5700429dbbf701e16d490f96",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "19b2c473aa1442409c72abde2095a56b",
+      "End": "82bf2f7c9ab741bd907c83f86e34cc8e",
+      "Id": "e7464a8f164c47f6885a103c080aba7d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8c8df897ef944b3594809a21a77d44f3",
+      "End": "801410c2d93d409790fb7484047972e2",
+      "Id": "613858022f21485b8d41505b4d1d4253",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6d2051b4fd1744d9a8b6a1e1bf16c2b9",
+      "End": "bae66645bc504b99a913ccf18cc07104",
+      "Id": "92b5678ccc7645528991448f37b614af",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "65050a7134814af18c4b2beed0e95d64",
+      "End": "d57acb454bed4260a7cb64e96a4c028c",
+      "Id": "38c0d871f84c4a1085baa3479234dcab",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "241f5849d86d492b89cecb6c2785e665",
+      "End": "1bd5896852d74490a635532712b72370",
+      "Id": "ce028468fd0f456fa88db33ccb74b542",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "66e2760408074b5fabe065fe3c74f620",
+      "End": "7385dd397d4a42ef953335344f771b41",
+      "Id": "8fb74488aa2a4c5a9adff750d67b799e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5cb52871101d4c898ad79fe6a4e41429",
+      "End": "26fd9f1f17a5458b86848d4a67bcfd8c",
+      "Id": "35c29d988bdf43c18c54a30636ab7cc8",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0b80bdb0dad540d6abd8237e814e1e26",
+      "End": "68cbb27457c0495f8fa081e91a6fe93f",
+      "Id": "887649e30dce4c4683707a1f27606db3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "43c61b17b1dc4e85b6a5c8c4eb4f05c5",
+      "End": "1523caf622654410866e8a2f235803a1",
+      "Id": "3fad6d4615d54f1a8bd9ebfc5911415e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "09c1877fc2e74207a27d78a7872b1e24",
+      "End": "10145f6d95b14df799eafa7f00f26bac",
+      "Id": "a75b684701544b02be0dc15584a807ee",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "72a7872ce2a7450886ecce680a947a80",
+      "End": "30d4796cadf642489d77ec4632f58f95",
+      "Id": "79761f686d7b4a48b1dfcc79a2ae1b45",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a732935d9d2f42cbbc4a8da228918c8a",
+      "End": "e7d49f52e69c46cb9b2cb42d9f96eb93",
+      "Id": "f581d41ed3ff45a0bc80281e1d884c61",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0fe0cbc136744c57950d3bd52ea7cb97",
+      "End": "f27bc7ac49084b31853dc9ac101e5864",
+      "Id": "4b1ad9bc5589411e90ea596feb33b4d3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9b295909d3e745a98fac79058705ac0e",
+      "End": "924c4557ff22443ca835a2332a2642e2",
+      "Id": "e6cf6c1c9a2e4475b9eb5b41ecadd761",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "03252468ad86462485d7c4a4a5a3a542",
+      "End": "2a03268f3d7d44728d6ad234bc6d0545",
+      "Id": "b329f8ba300a41febdad3b97c703bd46",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "edd426dede1c4a92b915cbb8bf450fa4",
+      "End": "df6562d74cc74bc39dec5f733c296417",
+      "Id": "f9f812da82ec4efd931bdf4c9925e637",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "eb6c2709bb05445b8121abce5279b15c",
+      "End": "29c8ddf48ab34eb3ab1768a71167915b",
+      "Id": "b04cac60447f48eca79e32ffefc83968",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c3349cb51478489ba2b70a9b41646698",
+      "End": "316dd0a2f21f4bd7a6d685f9646e83ce",
+      "Id": "c5aa8b145dfa441c93225b7d3faf8b5e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2e2854e2fc51401fb0d838eb0da84b9f",
+      "End": "7d9e3f27a7d54bbeb770bc8fefb96958",
+      "Id": "cc29004405e9452e9584be2320528056",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "628dd640f6934e5baed1ffaa21c9ec31",
+      "End": "4c170a67f86643e38ac115fed753cb39",
+      "Id": "9ef5c0a84d1746d5a89454c890c5b29d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "0cbc97d562e74d868faa4281dd05f902",
+      "End": "955e4f42fc514e278e42db3831c4b933",
+      "Id": "0a320cad4c9e4c4cb20b2e5fbaceabcc",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a30b1496b4d14412b95da7e30df26de0",
+      "End": "13f61dae18064fd2808fdaf7fdea28cb",
+      "Id": "da3442dda0354086802f2f488dbd5824",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c5924a194e64485db7b894f40453ac71",
+      "End": "8e296ba1df0e495e8be0e3a2e8bf6ac8",
+      "Id": "1c7c397858dc4b228074fc4147a81a33",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c12eb0e204394952b0a9f9db05212dd5",
+      "End": "b8f29363d72d432fae190cf7e493bfbb",
+      "Id": "009cdfd3dca44243b84fedd81e77ff6c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f4b831a1066747799ca7e6814fa23f71",
+      "End": "ccd7b9a382e04cc686ed116eab05e477",
+      "Id": "36a4c16ccfb94a5ab688f579e73552b2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "9014026bc6ac4293aabd863e9337f151",
+      "End": "b277986eddb04e508739499c42b891cd",
+      "Id": "fdb9f529bea647e7ac63e8a094b99b1e",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "1daa6e3466c0421483528de104db8881",
+      "End": "d36a897344844496b9c9486105ff3015",
+      "Id": "54ec6eda056e40bc817330dd6fc98200",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f364b16ee2a84ae78a5f919ec68e0277",
+      "End": "c87e3f19118844f7b3ff517965d1279e",
+      "Id": "ec40af8dd4424524bf4e0fa52c9c518d",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f7de851d104f430b8ba5d7d2a7a2f71c",
+      "End": "7128c259b0dc4cbfb6ac52c615587fcb",
+      "Id": "bba8e33abfbb46bd846fadf9190e3bec",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "74df1a1036e24440bedd0cfc33bb0c11",
+      "End": "9805e09589024140ada6b2052c6eba1b",
+      "Id": "3d52e03fe8434d7fbff48d09baed07a2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6b7ebab9dfdd4465bb3a716f292d9f83",
+      "End": "8e0ddb24493c4dbfa7eac46c6900312d",
+      "Id": "aa4513bcb13847d3ae904468b54fe646",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8e8c682b1fca492395d2ea894f0e108f",
+      "End": "cefa5664633e4350978c8c76e0ec3470",
+      "Id": "8e36d27ef4404450a96c3a1d9a936396",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "fb3c8e13d8754884bca4bd8857bdb1ea",
+      "End": "45400c81a0d44a288a5b860d11aca238",
+      "Id": "083617eeaa87410488099ab8ce883887",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f946b1c7e2f34cf5bc42104b6dc29251",
+      "End": "a53bfb3887064accac2f35c58f6f3225",
+      "Id": "ee8efc7e0bd948e49eae1fb3b970097b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "11470ebeac5c4de0bfe19105861bd1ff",
+      "End": "d4fdc64e6e3845c39d93fabd89ffde58",
+      "Id": "83d98ba496654b52b4eb998c659310c2",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "f794806f5a8a44d58c8e5b9fab14fd45",
+      "End": "a8479c39965e4851ad8f7c8334a3521c",
+      "Id": "618f60a1d3674885a4acaa7bf4eb63f3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "37d5643c32bf41129b86894e7ef77a36",
+      "End": "93b01a1bcac64539a3b8bdb69d1d94fa",
+      "Id": "d84d2266a3e847eaaa75ff6475dea956",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "e779f6d896ea4266a908f7899cabc84d",
+      "End": "56d6f633492c4be98d02e1967679cf5a",
+      "Id": "3d436c2b34d44c638a887231a14290f1",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "634a80e253fe45589875f303dff14ecf",
+      "End": "912a7e838e7845659a77a7e3a2963a81",
+      "Id": "22314307b1794c43958d8093bc1b5fb9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "8d4dabc811e64a90a35abcefacd52651",
+      "End": "39074028e4ca46c8b22e77ce21584e89",
+      "Id": "19e7e86d12e94e718005128b30a5d125",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "c8ff59ea83bb46909bfa735848418b5b",
+      "End": "561f776b97434c1bbaed5fcd22b49b50",
+      "Id": "553d918debff4b979ff5d0559353ed5c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "b50655d037d84ddea58acf60e8424421",
+      "End": "3199b6ef0655426ab5fd2a704f1cb729",
+      "Id": "7f254ff7a79e4b069e2cf9a6e2441bdf",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "5c39258352504ad1806ae8c542000e6c",
+      "End": "af5ee1fb42fb431e95c93085502f79c7",
+      "Id": "12f37c07bbd4493dbfa54d600d499d3b",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a6f47b4bc12f44268c87f517f8b1ec8d",
+      "End": "f1f167c60cba438ba59e2c7387594dc1",
+      "Id": "fd8c571f80b04b4a8ee46e31298ebc7a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "53251bc960064f2ba7d5b8bac06690c4",
+      "End": "e54822dcef2c4a2ca73e68fa96021f5c",
+      "Id": "3277706a2f934850bec69670670553dd",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "78ddbb56236947c2822c238549849ff7",
+      "End": "8d54c262df4441f0a5854556752d03f0",
+      "Id": "b953559b53fe4689a3bf9288bb5a82c7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "a5801aae2a964fa4b2c5965c68a0363e",
+      "End": "95ff001c46f14c2cb039bbbf13dfba22",
+      "Id": "d2aa7bc0086c40b4a4d7616123814b4d",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": null,
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.13",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "2.0",
+      "Data": {}
+    }
+  ],
+  "Author": "None provided",
+  "Linting": {
+    "activeLinter": "Nenhum",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.13.1.3887",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Visualização do plano de fundo",
+      "EyeX": -7.8233229275508265,
+      "EyeY": 91.295075176324872,
+      "EyeZ": 113.56827038981662,
+      "LookX": 26.528176888872981,
+      "LookY": -28.738858296279069,
+      "LookZ": -128.2195216295527,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Id": "bc35a4d1fa9843ce970253945addbb25",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Código",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5442.1353260027417,
+        "Y": 2290.5506407325438
+      },
+      {
+        "Id": "3cdeff787f9145a4871c24ac9f4a13ee",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "All Elements of Category",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5195.3630678687014,
+        "Y": 2560.4519673056038
+      },
+      {
+        "Id": "4d5ab1253c8d4506b0fc992761bf6e1b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Descricao Planilha de Qunatidades",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5438.9445379280814,
+        "Y": 2475.3695012895741
+      },
+      {
+        "Id": "fc8139ed24624b5e93a1c460bff933c9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Especificação",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5444.7699475093114,
+        "Y": 2680.4872574084366
+      },
+      {
+        "Id": "2acb231ed9fb49aabdef1ad9218ab1eb",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Categories",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5124.2236307354078,
+        "Y": 2778.3671729772259
+      },
+      {
+        "Id": "e4d51bb7e1ba40bfafda624777b02118",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DA FAMÍLIA",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4856.5375554854572,
+        "Y": 3089.0419772637342
+      },
+      {
+        "Id": "5ef617029446421da4215218ce7f80e3",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DO TIPO",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4561.8978475445883,
+        "Y": 3186.1899272781716
+      },
+      {
+        "Id": "d243c25ee8a243808c44709907e082ba",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DO TIPO",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4572.3741947657727,
+        "Y": 3276.5730488881486
+      },
+      {
+        "Id": "bd1ecedd66924b40bb374b69982dddf9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "FamilyType.ByFamilyNameAndTypeName",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5142.2189587293342,
+        "Y": 3250.2999438782981
+      },
+      {
+        "Id": "32f32dc257dc49faab9f1c781c1f24c1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "FamilyType.ByFamilyNameAndTypeName",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5142.3632806926244,
+        "Y": 3138.0205714762578
+      },
+      {
+        "Id": "c09540e767cb48d0a181748f73c53504",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "AGRUPA OS TIPOS",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5475.8319640301979,
+        "Y": 3261.8173157848059
+      },
+      {
+        "Id": "7568327a4ef146c9bdda0f91dc5ef127",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Descricao Planilha de Qunatidades",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5860.4755690928023,
+        "Y": 3143.4776761041039
+      },
+      {
+        "Id": "ca86dcf7934f485fb3931ee432f139e9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "All Elements of Family Type",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5623.9336248892041,
+        "Y": 3140.7005002577689
+      },
+      {
+        "Id": "95f45ce0100d444cb569982f18f18922",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Descricao Planilha de Qunatidades",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5853.54291113699,
+        "Y": 3507.24988618546
+      },
+      {
+        "Id": "712ce653233f48bc9f6cdd0e20c0e2d5",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "AGRUPA OS TIPOS",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5465.5081957952434,
+        "Y": 3624.741748296386
+      },
+      {
+        "Id": "d4792b19fb514b8592c5c5627a2cf47a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "All Elements of Family Type",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5613.6098566542432,
+        "Y": 3503.6249327693458
+      },
+      {
+        "Id": "ca129891693c45a1a95102afbb5d9107",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "FamilyType.ByFamilyNameAndTypeName",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5131.8951904943733,
+        "Y": 3613.2243763898759
+      },
+      {
+        "Id": "46c7f754b4784bdeb905cf469d8ab362",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "FamilyType.ByFamilyNameAndTypeName",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5132.0395124576635,
+        "Y": 3500.9450039878361
+      },
+      {
+        "Id": "622573236db84bd0b1fd19934c39ce6a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DA FAMÍLIA",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4846.2137872505036,
+        "Y": 3451.9664097753061
+      },
+      {
+        "Id": "d8d87c95a66042f2a5b6a33559c6d985",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DO TIPO",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4382.86634292224,
+        "Y": 3543.1799168012449
+      },
+      {
+        "Id": "5223a7814fd64aa6a8f72583adba4e81",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DO TIPO",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4383.1693593059881,
+        "Y": 3635.2585935507964
+      },
+      {
+        "Id": "6bc0d8ca9e2040849c7a4f140b6974e9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Descricao Planilha de Qunatidades",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5835.3994232104569,
+        "Y": 3765.9244637631541
+      },
+      {
+        "Id": "60401bef433e44f8aa66e4e0a8201d36",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "FamilyType.ByFamilyNameAndTypeName",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5129.9612235681034,
+        "Y": 3851.7267227108696
+      },
+      {
+        "Id": "47fc7ee5b9414287a1492f3b176ca822",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DO TIPO",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4583.2095618985941,
+        "Y": 3876.8254232181603
+      },
+      {
+        "Id": "c13b3c8677e748dcae3bf832f1547578",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "All Elements of Family Type",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5596.5373819968372,
+        "Y": 3879.0399566824112
+      },
+      {
+        "Id": "851cefedd28941e189702dc8160fa59d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DA FAMÍLIA",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4839.8514452844156,
+        "Y": 3784.5409029230987
+      },
+      {
+        "Id": "35f8abb14b4a4022bf3e46ff5aa3434a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Descricao Planilha de Qunatidades",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5845.3084717804832,
+        "Y": 4078.6929731002219
+      },
+      {
+        "Id": "69a41b3c695e459cbdced79e8043c71a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "All Elements of Family Type",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5605.3754172977324,
+        "Y": 4075.0680196841122
+      },
+      {
+        "Id": "4eb1725f455d4716a5329173dda30eba",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "FamilyType.ByFamilyNameAndTypeName",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5123.8050731011526,
+        "Y": 4072.3880909026029
+      },
+      {
+        "Id": "8533d00a616d4f6ab7e637830e1791a4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DA FAMÍLIA",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4819.4847055216906,
+        "Y": 4024.0259847691486
+      },
+      {
+        "Id": "569b9e42724a4fbc96f0598b44632d89",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DO TIPO",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4891.8654019111345,
+        "Y": 4114.0065156369255
+      },
+      {
+        "Id": "5445a4cc7ec64a308e4521b9677ec10f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Descricao Planilha de Qunatidades",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5840.4862893110021,
+        "Y": 4747.0310341969671
+      },
+      {
+        "Id": "d3d03894807647dfbe32cc56ef9a4593",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "All Elements of Family Type",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5606.5218647733163,
+        "Y": 4743.4060807808573
+      },
+      {
+        "Id": "15db7acf81fa42b58df4742269d07769",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "FamilyType.ByFamilyNameAndTypeName",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5124.9515205767366,
+        "Y": 4740.7261519993481
+      },
+      {
+        "Id": "c87342ae0c0e4f12864d5c1e30c4373c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DA FAMÍLIA",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4820.6311529972763,
+        "Y": 4692.3640458658974
+      },
+      {
+        "Id": "88e6115f42514c398151d346f74f8eb3",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DO TIPO",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4523.254956844331,
+        "Y": 4787.4825304748156
+      },
+      {
+        "Id": "44f2cdffc7eb4c93b9593c68bc0ba926",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Descricao Planilha de Qunatidades",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5838.7231577693774,
+        "Y": 5041.4476851951495
+      },
+      {
+        "Id": "ecf233c081a54806bd3876a933deccd5",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "FamilyType.ByFamilyNameAndTypeName",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5117.2197590900469,
+        "Y": 5035.1428029975295
+      },
+      {
+        "Id": "b960d13a21ad4022b896ad8c64d80608",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "All Elements of Family Type",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5598.7901032866275,
+        "Y": 5037.82273177904
+      },
+      {
+        "Id": "46bcc792c975458a9dd909aa43bcbe15",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DA FAMÍLIA",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4754.7368869661759,
+        "Y": 4986.78069686408
+      },
+      {
+        "Id": "bd3ebb8d13dc45a18cb39aa4ccb68e94",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DO TIPO",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4515.5231953576376,
+        "Y": 5081.899181473
+      },
+      {
+        "Id": "036e14c8000340c79ea7ef79c055ea43",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Descricao Planilha de Qunatidades",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5836.9953598859493,
+        "Y": 5302.6079638622432
+      },
+      {
+        "Id": "f742fea7a554460585a6949249aba5e8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "All Elements of Family Type",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5597.0623054031994,
+        "Y": 5298.9830104461325
+      },
+      {
+        "Id": "37a61a2f32e94913b56aa577ee9ad021",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "FamilyType.ByFamilyNameAndTypeName",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5115.49196120662,
+        "Y": 5296.3030816646233
+      },
+      {
+        "Id": "e554257b8aee4ab98f7b2d78904e0c6d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DO TIPO",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4683.8538442619074,
+        "Y": 5341.5440572816469
+      },
+      {
+        "Id": "eb9ffd30ac7645e78ffde97a73b55c2b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DA FAMÍLIA",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4835.9318715097843,
+        "Y": 5247.9409755311726
+      },
+      {
+        "Id": "3c038bc53e5449abb87940363e6fe50a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Descricao Planilha de Qunatidades",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5840.3092428657928,
+        "Y": 5556.2889981929884
+      },
+      {
+        "Id": "f91cfceb6fe04f60a74a7cda2c8769a3",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "FamilyType.ByFamilyNameAndTypeName",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5118.8058441864632,
+        "Y": 5549.9841159953685
+      },
+      {
+        "Id": "6c879f30821449788e6fea1b4357ccba",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "All Elements of Family Type",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5600.376188383043,
+        "Y": 5552.6640447768787
+      },
+      {
+        "Id": "18683c0a89d24876b649b4ec25d6f220",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DO TIPO",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4513.3137137828617,
+        "Y": 5595.2250916123885
+      },
+      {
+        "Id": "fcc7f15e54054fa285a236bda9123473",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DA FAMÍLIA",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4834.521460645642,
+        "Y": 5501.6220098619187
+      },
+      {
+        "Id": "a94c5b1e4a474a498280d16c716d4371",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Descricao Planilha de Qunatidades",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5843.1549732675458,
+        "Y": 5834.9012012853937
+      },
+      {
+        "Id": "99da9020586d420d95b8c0e5a2530c96",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "FamilyType.ByFamilyNameAndTypeName",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5117.80179840019,
+        "Y": 5841.5195074096091
+      },
+      {
+        "Id": "7a3934bf54704c359b8e5573785bfbad",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "All Elements of Family Type",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5599.37214259677,
+        "Y": 5844.1994361911184
+      },
+      {
+        "Id": "9f1331fcc5a240808615e52567f74b1f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DO TIPO",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4545.1849554738155,
+        "Y": 5885.41863455817
+      },
+      {
+        "Id": "87544c812f4b408281cf9df66141f8ef",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DA FAMÍLIA",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4833.51741485936,
+        "Y": 5793.1574012761585
+      },
+      {
+        "Id": "898dc32cc11843dd8c78041d701d66ab",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Descricao Planilha de Qunatidades",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5841.6025158636558,
+        "Y": 6330.6890011831292
+      },
+      {
+        "Id": "b522d56119d548ecb8f8a85ce5bd9284",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "All Elements of Family Type",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5596.30104213973,
+        "Y": 6212.4212196246463
+      },
+      {
+        "Id": "06f739a0d11f464eb6952866083400dc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "FamilyType.ByFamilyNameAndTypeName",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5114.7306979431505,
+        "Y": 6209.7412908431361
+      },
+      {
+        "Id": "14b4df0882fa46b0b09b39999d6c98be",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DO TIPO",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4630.6787173608409,
+        "Y": 6255.7745110602282
+      },
+      {
+        "Id": "5f829f722beb4131a118aa207d882342",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DA FAMÍLIA",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4830.44631440232,
+        "Y": 6161.3791847096863
+      },
+      {
+        "Id": "e0bf277d2d0d49779303f2ab5a600134",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DO TIPO",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4553.7013676370425,
+        "Y": 6454.5413337263808
+      },
+      {
+        "Id": "a7a3a69b7f1d4584acdeb64fab7a03fd",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "FamilyType.ByFamilyNameAndTypeName",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5112.4466056179572,
+        "Y": 6411.7092531120861
+      },
+      {
+        "Id": "edff14ed7f8944848676d3c3d82ca793",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DA FAMÍLIA",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4828.1622220771269,
+        "Y": 6363.3471469786364
+      },
+      {
+        "Id": "b110c4a3e82d4dfea33ce3ebf4d60351",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DO TIPO",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4611.4352360207949,
+        "Y": 6667.5784029355191
+      },
+      {
+        "Id": "fba5a96a296e495eaaafc5d65c535e6a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "FamilyType.ByFamilyNameAndTypeName",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5112.5599611513562,
+        "Y": 6623.6792757869589
+      },
+      {
+        "Id": "370da914aac6450985fcff430bd5b981",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DA FAMÍLIA",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4828.2755776105259,
+        "Y": 6575.3171696535092
+      },
+      {
+        "Id": "237868b0c8304a03ae3de87d5d051815",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DO TIPO",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4541.0255173496389,
+        "Y": 6868.5385436510278
+      },
+      {
+        "Id": "b4786977cecf4d5780388be96a3955e0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "FamilyType.ByFamilyNameAndTypeName",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5113.6423602760087,
+        "Y": 6824.6394165024676
+      },
+      {
+        "Id": "6dbec247a7a947c48c16db9f315de60e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DA FAMÍLIA",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4829.3579767351785,
+        "Y": 6776.2773103690179
+      },
+      {
+        "Id": "956d8bce7b694b56b657ebf5b5aac465",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "AGRUPA OS TIPOS",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5464.5041173518357,
+        "Y": 6595.1000904338
+      },
+      {
+        "Id": "918c4539ee234e04b89b08e99f2bc3ce",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "FamilyType.ByFamilyNameAndTypeName",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5116.4031293169519,
+        "Y": 7016.0027261795894
+      },
+      {
+        "Id": "d621d05924c94d7fac58e9bb62144807",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DO TIPO",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4511.6716945867493,
+        "Y": 7061.9737624767831
+      },
+      {
+        "Id": "4f4914230899462a84388c8edb1356f4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DA FAMÍLIA",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4832.1187457761216,
+        "Y": 6967.6406200461388
+      },
+      {
+        "Id": "c717a1ffcfc54613856952db02e34364",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DA FAMÍLIA",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4818.8731204989326,
+        "Y": 4337.1078966886625
+      },
+      {
+        "Id": "7ce474833fa74cc9a7df922a3c29a21c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "NOME DO TIPO",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 4447.3545286578837,
+        "Y": 4433.2855583788414
+      },
+      {
+        "Id": "d89efd41b39149318f5a5c5d93be2a4b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "FamilyType.ByFamilyNameAndTypeName",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5123.1934880783929,
+        "Y": 4385.4700028221123
+      },
+      {
+        "Id": "4931fb6cedcd49c9aa4b03cc86413b75",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "All Elements of Family Type",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5604.7638322749726,
+        "Y": 4388.1499316036225
+      },
+      {
+        "Id": "8e9e3af1b0644df7ba802defb3c20d66",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Descricao Planilha de Qunatidades",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 5846.1424963814616,
+        "Y": 4383.3014683696638
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "f3fb162d9bd14d28b216c933f75473a8",
+        "Title": "Equipamentos",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "3cdeff787f9145a4871c24ac9f4a13ee",
+          "2acb231ed9fb49aabdef1ad9218ab1eb",
+          "fc8139ed24624b5e93a1c460bff933c9",
+          "4d5ab1253c8d4506b0fc992761bf6e1b",
+          "bc35a4d1fa9843ce970253945addbb25"
+        ],
+        "HasNestedGroups": false,
+        "Left": 5114.2236307354078,
+        "Top": 2145.5506407325438,
+        "Width": 1153.5463167739035,
+        "Height": 764.81653224468209,
+        "FontSize": 96.0,
+        "InitialTop": 2290.5506407325438,
+        "InitialHeight": 632.81653224468209,
+        "TextblockHeight": 135.0,
+        "Background": "#FF48B9FF"
+      }
+    ],
+    "X": -219.90141344443759,
+    "Y": -280.46546790422087,
+    "Zoom": 0.15382988110112761
+  }
+}

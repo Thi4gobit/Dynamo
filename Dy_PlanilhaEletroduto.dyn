@@ -1,0 +1,986 @@
+{
+  "Uuid": "e453f93e-0d02-48bb-9466-5c04cb922e29",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Dy_PlanilhaEletroduto",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Elements.Element": {
+        "Key": "Revit.Elements.Element",
+        "Value": "RevitNodes.dll"
+      },
+      "Revit.Elements.Element": {
+        "Key": "Revit.Elements.Element",
+        "Value": "RevitNodes.dll"
+      },
+      "Math": {
+        "Key": "DSCore.Math",
+        "Value": "DSCoreNodes.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 90,
+      "SelectedString": "OST_Conduit",
+      "NodeType": "ExtensionNode",
+      "Id": "bcf42ca067ae40c5a6feb6fe84bc1df0",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e07eccbb9ea944f6a2bed7202a110904",
+          "Name": "Category",
+          "Description": "A categoria selecionada.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Todas as categorias incorporadas."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "2148264598274de6b7e17a07450ae61e",
+      "Inputs": [
+        {
+          "Id": "a0985df756df4790b1b560d5eabf5816",
+          "Name": "Category",
+          "Description": "Categoria",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "bb1579a05b2d498aa460410850b43865",
+          "Name": "Elements",
+          "Description": "Um tipo de elemento.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obter todos os elementos da categoria especificada no modelo."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ncategoria = Elements.Element.GetParameterValueByName(elementos_tipo, \"ITC_Dynamo\");\n[Imperative]\n{\n\tfor (i in 0..(List.Count(categoria)-1))\n\t{\n\t\tif (categoria[i] == \"Eletroduto\")\n\t\t{\n\t\t\tdescricao_base = Elements.Element.GetParameterValueByName(elementos_tipo[i], \"ID_Descrição\");\n\t\t\taux1 = Elements.Element.GetParameterValueByName(elementos[i], \"Tamanho\");\n\t\t\taux2 = Elements.Element.GetParameterValueByName(elementos[i], \"ITC_Instalação\");\n\t\t\tout1 = ((aux1 == \"16ø\" ? \"1/2 polegada\" : (aux1 == \"20ø\" ? \"3/4 polegada\" : (aux1 == \"25ø\" ? \"1 polegada\" : (aux1 == \"32ø\" ? \"1 1/4 polegada\" : (aux1 == \"40ø\" ? \"1 1/2 polegada\" : (aux1 == \"50ø\" ? \"2 polegadas\" : (aux1 == \"75ø\" ? \"2 1/2 polegadas\" : (aux1 == \"85ø\" ? \"3 polegadas\" : (aux1 == \"110ø\" ? \"4 polegadas\" : \"verificar a seção no projeto\"))))))))));\n\t\t\tout2 = (aux2 == \"\" ? \"\" : \" - \" + aux2);\n\t\t\tdescricao = ((descricao_base + \" - \") + out1) + out2;\n\t\t\tout = Elements.Element.SetParameterByName(elementos[i], \"ID_Descrição Planilha Quantidades\", descricao);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tcontinue;\n\t\t}\n\t};\n\treturn 0;\n};",
+      "Id": "33104ea993b640f1b65050e69650415d",
+      "Inputs": [
+        {
+          "Id": "b6c13f7e7d884819b8942fb101c70d07",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4ea08e7e66a84c50a67a489234c60822",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "274bd0cbc41c4b048ca2c46215feec28",
+          "Name": "",
+          "Description": "categoria",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6b6b924a0a27421ab287b19cea90cf05",
+          "Name": "",
+          "Description": "Valor da expressão na linha 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ncategoria = Elements.Element.GetParameterValueByName(elementos_tipo, \"ITC_Dynamo\");\n[Imperative]\n{\n\tfor (i in 0..(List.Count(categoria)-1))\n\t{\n\t\tif (categoria[i] == \"Eletroduto\")\n\t\t{\n\t\t\tcodigo_eap = Elements.Element.GetParameterValueByName(elementos_tipo[i], \"ID_Código EAP\");\n\t\t\tcodigo_sufixo = Elements.Element.GetParameterValueByName(elementos[i], \"ID_Código Sufixo\");\n\t\t\taux1 = codigo_eap;\n\t\t\taux2 = ((codigo_sufixo != \"\" ? (\".\" + codigo_sufixo) : \"\"));\n\t\t\tcodigo = (aux1 + aux2);\n\t\t\tout = Elements.Element.SetParameterByName(elementos[i], \"ID_Código\", codigo);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tcontinue;\n\t\t}\n\t};\n\treturn 0;\n};",
+      "Id": "10b145f2e9954313bf4fb2299c46e15a",
+      "Inputs": [
+        {
+          "Id": "d1af1ae5cc0f4271b2cb8dfbd6b29123",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "cf67e00069264537b2fd4dd60ac1e9ef",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "566c90cab6eb4f129cb7fed8af390f10",
+          "Name": "",
+          "Description": "categoria",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "046fa104c78f4641b62a56ec26af4f14",
+          "Name": "",
+          "Description": "Valor da expressão na linha 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 102,
+      "SelectedString": "OST_ConduitFitting",
+      "NodeType": "ExtensionNode",
+      "Id": "13da28811efe4a0d8a718c4d9ac12f49",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2696a933b53346249d2fb71b940c53ad",
+          "Name": "Category",
+          "Description": "A categoria selecionada.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Todas as categorias incorporadas."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "9f08bb3ccb3840ee939b9591020c44d7",
+      "Inputs": [
+        {
+          "Id": "761abf5569f24e2d99ca8b7afc01c6a1",
+          "Name": "Category",
+          "Description": "Categoria",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3c5a2fcc000a465480a13259022ad33d",
+          "Name": "Elements",
+          "Description": "Um tipo de elemento.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Obter todos os elementos da categoria especificada no modelo."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ncategoria = Elements.Element.GetParameterValueByName(elementos_tipo, \"ITC_Dynamo\");\n[Imperative]\n{\n\tfor (i in 0..(List.Count(categoria)-1))\n\t{\n\t\tif (categoria[i] == \"Conexao_eletroduto\")\n\t\t{\n\t\t\tcodigo_eap = Elements.Element.GetParameterValueByName(elementos_tipo[i], \"ID_Código EAP\");\n\t\t\tcodigo_sufixo = Elements.Element.GetParameterValueByName(elementos[i], \"ID_Código Sufixo\");\n\t\t\taux1 = codigo_eap;\n\t\t\taux2 = ((codigo_sufixo != \"\" ? (\".\" + codigo_sufixo) : \"\"));\n\t\t\tcodigo = (aux1 + aux2);\n\t\t\tescreve = Elements.Element.SetParameterByName(elementos[i], \"ID_Código\", codigo);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tcontinue;\n\t\t}\n\t};\n\treturn 0;\n};",
+      "Id": "14390f9732214aed915edc9724b3ee41",
+      "Inputs": [
+        {
+          "Id": "ff7130d25e044419a8c82ce06305d8fc",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d70e0df7c90e4e76817586452d2dba6f",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b579e7cab1614f9b933fa772922cad35",
+          "Name": "",
+          "Description": "categoria",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "792f9e579b6b45479c7b7d216aeba446",
+          "Name": "",
+          "Description": "Valor da expressão na linha 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ncategoria = Elements.Element.GetParameterValueByName(elementos_tipo, \"ITC_Dynamo\");\n[Imperative]\n{\n\tfor (i in 0..(List.Count(categoria)-1))\n\t{\n\t\tif (categoria[i] == \"Conexao_eletroduto\")\n\t\t{\n\t\t\tdescricao_base = Elements.Element.GetParameterValueByName(elementos_tipo[i], \"ID_Descrição\");\n\t\t\tsubcategoria = Elements.Element.GetParameterValueByName(elementos_tipo[i], \"ITC_Subcategoria\");\n\t\t\taux3 = Elements.Element.GetParameterValueByName(elementos[i], \"ITC_Instalação\");\n\t\t\taux2 = Elements.Element.GetParameterValueByName(elementos[i], \"Tamanho\");\n\t\t\taux1 = Elements.Element.GetParameterValueByName(elementos[i], \"Ângulo\");\n\t\t\tout1 = (((aux1 > 89) && (aux1 < 91) ? \"90°\" : ((aux1 > 44) && (aux1 < 46) ? \"45°\" : \"verificar\")));\n\t\t\tout2 = ((aux2 == \"16øx16ø\" || aux2 == \"16ø\" || aux2 == \"16øx16øx16ø\" || aux2 == \"16øx16øx16øx16ø\" ? \"1/2 polegada\" : (aux2 == \"20øx20ø\" || aux2 == \"20ø\" || aux2 == \"20øx20øx20ø\" || aux2 == \"20øx20øx20øx20ø\" ? \"3/4 polegada\" : (aux2 == \"25øx25ø\" || aux2 == \"25ø\" || aux2 == \"25øx25øx25ø\" || aux2 == \"25øx25øx25øx25ø\" ? \"1 polegada\" : (aux2 == \"32øx32ø\" || aux2 == \"32ø\" || aux2 == \"32øx32øx32ø\" || aux2 == \"32øx32øx32øx32ø\" ? \"1 1/4 polegada\" : (aux2 == \"40øx40ø\" || aux2 == \"40ø\" || aux2 == \"40øx40øx40ø\" || aux2 == \"40øx40øx40øx40ø\" ? \"1 1/2 polegada\" : (aux2 == \"50øx50ø\"  || aux2 == \"50ø\" || aux2 == \"50øx50øx50ø\" || aux2 == \"50øx50øx50øx50ø\" ? \"2 polegadas\" : (aux2 == \"75øx75ø\"  || aux2 == \"75ø\" || aux2 == \"75øx75øx75ø\" || aux2 == \"75øx75øx75øx75ø\" ? \"2 1/2 polegadas\" : (aux2 == \"85øx85ø\"  || aux2 == \"85ø\" || aux2 == \"85øx85øx85ø\" || aux2 == \"85øx85øx85øx85ø\" ? \"3 polegadas\" : (aux2 == \"110øx110ø\"  || aux2 == \"110ø\"  || aux2 == \"110øx110øx110ø\" || aux2 == \"110øx110øx110øx110ø\"? \"4 polegadas\" : \"verificar a seção no projeto\"))))))))));\n\t\t\tout3 = ((aux3 == \"\" ? \"\" : \" - \" + aux3));\n\t\t\tdescricao = (subcategoria == \"Condulete\" ? ((descricao_base + \" - \") + out2) + out3 : ((((descricao_base + \" - \") + out1) + \" - \") + out2) + out3);\n\t\t\tescreve = Elements.Element.SetParameterByName(elementos[i], \"ID_Descrição Planilha Quantidades\", descricao);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tcontinue;\n\t\t}\n\t};\n\treturn 0;\n};",
+      "Id": "619baed98aaa4e5185795ca1ea36ced9",
+      "Inputs": [
+        {
+          "Id": "081150ea342c4944a7849d9cbbe3bbbd",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9ae8c7e3ebdb4d779f758efbb88be07d",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "49927f45a0e84bffb41548fabd2eae68",
+          "Name": "",
+          "Description": "categoria",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "52cb25db1cfc45afa714a769f650b3ec",
+          "Name": "",
+          "Description": "Valor da expressão na linha 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ncategoria = Elements.Element.GetParameterValueByName(elementos_tipo, \"ITC_Dynamo\");\n[Imperative]\n{\n\tfor (i in 0..(List.Count(categoria)-1))\n\t{\n\t\tif (categoria[i] == \"Conexao_eletroduto\")\n\t\t{\n\t\t\tdescricao_base = Elements.Element.GetParameterValueByName(elementos_tipo[i], \"ID2_Descrição\");\n\t\t\taux1 = Elements.Element.GetParameterValueByName(elementos[i], \"Raio nominal\");\n\t\t\taux2 = Elements.Element.GetParameterValueByName(elementos[i], \"ITC_Instalação\");\n\t\t\tout1 = ((aux1 == 8 ? \"1/2 polegada\" : (aux1 == 10 ? \"3/4 polegada\" : (aux1 == 12.5 ? \"1 polegada\" : (aux1 == 16 ? \"1 1/4 polegada\" : (aux1 == 20 ? \"1 1/2 polegada\" : (aux1 == 25 ? \"2 polegadas\" : (aux1 == 37.5 ? \"2 1/2 polegadas\" : (aux1 == 42.5 ? \"3 polegadas\" : (aux1 == 55 ? \"4 polegadas\" : \"verificar a seção no projeto\"))))))))));\n\t\t\tout2 = (aux2 == \"\" ? \"\" : \" - \" + aux2);\n\t\t\tdescricao = ((descricao_base + \" - \") + out1) + out2;\n\t\t\tout = Elements.Element.SetParameterByName(elementos[i], \"ID2_Descrição Planilha Quantidades\", descricao);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tcontinue;\n\t\t}\n\t};\n\treturn 0;\n};",
+      "Id": "79e945aae9ec4a0198e8f431d2d2d0c8",
+      "Inputs": [
+        {
+          "Id": "b99aab63ced64c148d1e7649b9c93947",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f43e12d5c0b74419a19cc8beaee28d36",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "212c1ae2d33d4b4985822cb5fc3a4035",
+          "Name": "",
+          "Description": "categoria",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d5c1ff0fa3284759b52ec574142a3fb9",
+          "Name": "",
+          "Description": "Valor da expressão na linha 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ncategoria = Elements.Element.GetParameterValueByName(elementos_tipo, \"ITC_Dynamo\");\n[Imperative]\n{\n\tfor (i in 0..(List.Count(categoria)-1))\n\t{\n\t\tif (categoria[i] == \"Eletroduto\")\n\t\t{\n\t\t\taux1 = Elements.Element.GetParameterValueByName(elementos[i], \"Comprimento\");\n\t\t\taux2 = (aux1 <= 3000 ? 0 : (aux1 / 3000) - 0.499999999);\n\t\t\t//aux2 = (aux1 <= 3 ? 0 : (aux1 > 3 && aux1 < 50 ? aux1 / 3.00001 : (aux1 > 3000 ? aux1 / 3000.00001: 0)));\n\t\t\tquantidade_luvas = Math.Floor(aux2);\n\t\t\tout = Elements.Element.SetParameterByName(elementos[i], \"PROJ_Quantidade de luva\", quantidade_luvas);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tcontinue;\n\t\t}\n\t};\n\treturn 0;\n};",
+      "Id": "137f356892c44c6d87fabcf9aaaf3a48",
+      "Inputs": [
+        {
+          "Id": "37681d0d6c83493e88398494248dfb7c",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9860c2b421914da1b8796476bb4530c7",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7abc520818dd49e593e5efc8656c3752",
+          "Name": "",
+          "Description": "categoria",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "be04cca47a904762976d9447c16f5efc",
+          "Name": "",
+          "Description": "Valor da expressão na linha 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ncategoria = Elements.Element.GetParameterValueByName(elementos_tipo, \"ITC_Dynamo\");\n[Imperative]\n{\n\tfor (i in 0..(List.Count(categoria)-1))\n\t{\n\t\tif (categoria[i] == \"Eletroduto\")\n\t\t{\n\t\t\tcodigo_eap = Elements.Element.GetParameterValueByName(elementos_tipo[i], \"ID2_Código EAP\");\n\t\t\tcodigo_sufixo = Elements.Element.GetParameterValueByName(elementos[i], \"ID2_Código Sufixo\");\n\t\t\taux1 = codigo_eap;\n\t\t\taux2 = ((codigo_sufixo != \"\" ? (\".\" + codigo_sufixo) : \"\"));\n\t\t\tcodigo = (aux1 + aux2);\n\t\t\tout = Elements.Element.SetParameterByName(elementos[i], \"ID2_Código\", codigo);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tcontinue;\n\t\t}\n\t};\n\treturn 0;\n};",
+      "Id": "98892d27a33d4303a231f605c8e64c1e",
+      "Inputs": [
+        {
+          "Id": "7f00011d41bd4f678215e2982d8044ef",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2c2df99558cf4df79038b7469ec784ad",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "62811cc93cb946c59cb7294b7575acd0",
+          "Name": "",
+          "Description": "categoria",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4a0858ef751843b387cbbbc721fc0706",
+          "Name": "",
+          "Description": "Valor da expressão na linha 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ncategoria = Elements.Element.GetParameterValueByName(elementos_tipo, \"ITC_Dynamo\");\n[Imperative]\n{\n\tfor (i in 0..(List.Count(categoria)-1))\n\t{\n\t\tif (categoria[i] == \"Eletroduto\")\n\t\t{\n\t\t\tdescricao_base = Elements.Element.GetParameterValueByName(elementos_tipo[i], \"ID2_Descrição\");\n\t\t\taux1 = Elements.Element.GetParameterValueByName(elementos[i], \"Tamanho\");\n\t\t\taux2 = Elements.Element.GetParameterValueByName(elementos[i], \"ITC_Instalação\");\n\t\t\tout1 = ((aux1 == \"16ø\" ? \"1/2 polegada\" : (aux1 == \"20ø\" ? \"3/4 polegada\" : (aux1 == \"25ø\" ? \"1 polegada\" : (aux1 == \"32ø\" ? \"1 1/4 polegada\" : (aux1 == \"40ø\" ? \"1 1/2 polegada\" : (aux1 == \"50ø\" ? \"2 polegadas\" : (aux1 == \"75ø\" ? \"2 1/2 polegadas\" : (aux1 == \"85ø\" ? \"3 polegadas\" : (aux1 == \"110ø\" ? \"4 polegadas\" : \"verificar a seção no projeto\"))))))))));\n\t\t\tout2 = (aux2 == \"\" ? \"\" : \" - \" + aux2);\n\t\t\tdescricao = ((descricao_base + \" - \") + out1) + out2;\n\t\t\tout = Elements.Element.SetParameterByName(elementos[i], \"ID2_Descrição Planilha Quantidades\", descricao);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tcontinue;\n\t\t}\n\t};\n\treturn 0;\n};",
+      "Id": "be1850f83d3542e092d41d2f90b77ca3",
+      "Inputs": [
+        {
+          "Id": "585728edb2d24234ab1d82e9ec82c551",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c70e8786c6b0463e91e97da07ed70ca2",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c6fcf46321b340c183a99bde0ec993c3",
+          "Name": "",
+          "Description": "categoria",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7c29ec5a0c714ad4a43fd97372d790c3",
+          "Name": "",
+          "Description": "Valor da expressão na linha 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "/*\n\nATENÇÃO: Unidade de comprimento linear em milímetros !!!!\n\npreenche:\n\n- ID_Descrição Planilha Quantidades\n- ID_Código\n- ID_Quantidade de luva\n- ID2_Descrição Planilha Quantidades\n- ID2_Código\n\ndos itens abaixo:\n\n- ELE - ELETRODUTO RÍGIDO DE AÇO\n- ELE - ELETRODUTO RÍGIDO DE PVC\n- ELE - ELETRODUTO RÍGIDO À PROVA DE EXPLOSÃO\n- ELE - ELETRODUTO METÁLICO FLEXÍVEL À PROVA DE EXPLOSÃO\n- ELE - ELETRODUTO METÁLICO FLEXÍVEL À PROVA DE TEMPO\n- CNX - ELETRODUTO BSB - CONDULETE ALUMÍNIO - TIPO LR\n- CNX - ELETRODUTO BSB - CONDULETE ALUMÍNIO - TIPO T\n- CNX - ELETRODUTO BSB - CONDULETE ALUMÍNIO - TIPO C\n- CNX - ELETRODUTO NPT - CONDULETE ALUMÍNIO - TIPO LR\n- CNX - ELETRODUTO NPT - CONDULETE ALUMÍNIO - TIPO T\n- CNX - ELETRODUTO NPT - CONDULETE ALUMÍNIO - TIPO C\n- CNX - ELTRODUTO - CURVA CURTA - PVC\n\n*/;",
+      "Id": "2262171c60274cb5b7acd3c5a775bb81",
+      "Inputs": [],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ncategoria = Elements.Element.GetParameterValueByName(elementos_tipo, \"ITC_Dynamo\");\n[Imperative]\n{\n\tfor (i in 0..(List.Count(categoria)-1))\n\t{\n\t\tif (categoria[i] == \"Conexao_eletroduto\")\n\t\t{\n\t\t\tcodigo_eap = Elements.Element.GetParameterValueByName(elementos_tipo[i], \"ID2_Código EAP\");\n\t\t\tcodigo_sufixo = Elements.Element.GetParameterValueByName(elementos[i], \"ID2_Código Sufixo\");\n\t\t\taux1 = codigo_eap;\n\t\t\taux2 = ((codigo_sufixo != \"\" ? (\".\" + codigo_sufixo) : \"\"));\n\t\t\tcodigo = (aux1 + aux2);\n\t\t\tescreve = Elements.Element.SetParameterByName(elementos[i], \"ID2_Código\", codigo);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tcontinue;\n\t\t}\n\t};\n\treturn 0;\n};",
+      "Id": "3ade5882f00c4a06808174c02453cd7e",
+      "Inputs": [
+        {
+          "Id": "d95db6c5f6904fefb1605085c9bfcb62",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e753766658c647dfadbac033289f1fa1",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "175e61b6094a4b4fa007dd71bdd7e001",
+          "Name": "",
+          "Description": "categoria",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "be598c9aad004f4c8784e21a5784521c",
+          "Name": "",
+          "Description": "Valor da expressão na linha 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "elementos_tipo = Elements.Element.ElementType(elementos);\ncategoria = Elements.Element.GetParameterValueByName(elementos_tipo, \"ITC_Dynamo\");\n[Imperative]\n{\n\tfor (i in 0..(List.Count(categoria)-1))\n\t{\n\t\tif (categoria[i] == \"Conexao_eletroduto\")\n\t\t{\n\t\t\taux1 = Elements.Element.GetParameterValueByName(elementos_tipo[i], \"PROJ_Quantidade Fixa de Luva\");\n\t\t\tout = Elements.Element.SetParameterByName(elementos[i], \"PROJ_Quantidade de luva\", aux1);\n\t\t}\n\t\telse\n\t\t{\n\t\t\tcontinue;\n\t\t}\n\t};\n\treturn 0;\n};",
+      "Id": "609332a0e8a14188b83a50e5907f89be",
+      "Inputs": [
+        {
+          "Id": "37eb5206ccd4403ba81bae4808d74d96",
+          "Name": "elementos",
+          "Description": "elementos",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ebc0afc502ed4df8a9892abe6b423efd",
+          "Name": "",
+          "Description": "elementos_tipo",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "90287ee403624884b6b6c70fd0c894a2",
+          "Name": "",
+          "Description": "categoria",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9501490016c8439592fb0f8fa1024302",
+          "Name": "",
+          "Description": "Valor da expressão na linha 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Permite que o código DesignScript seja criado diretamente"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "e07eccbb9ea944f6a2bed7202a110904",
+      "End": "a0985df756df4790b1b560d5eabf5816",
+      "Id": "9ec318011c7944359ee084a083028033",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bb1579a05b2d498aa460410850b43865",
+      "End": "d1af1ae5cc0f4271b2cb8dfbd6b29123",
+      "Id": "3c1481a7b38f48c3a3ef2af49512d234",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bb1579a05b2d498aa460410850b43865",
+      "End": "b6c13f7e7d884819b8942fb101c70d07",
+      "Id": "cd660d49ac8746629e6aa10384b194d9",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bb1579a05b2d498aa460410850b43865",
+      "End": "37681d0d6c83493e88398494248dfb7c",
+      "Id": "77a489d65f6a47ca966bd5538b6072c3",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bb1579a05b2d498aa460410850b43865",
+      "End": "585728edb2d24234ab1d82e9ec82c551",
+      "Id": "0737100c368b4efea2a85bd5147a6f6c",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "bb1579a05b2d498aa460410850b43865",
+      "End": "7f00011d41bd4f678215e2982d8044ef",
+      "Id": "35f2bcc1e448498485df597a2ecf8c2a",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "2696a933b53346249d2fb71b940c53ad",
+      "End": "761abf5569f24e2d99ca8b7afc01c6a1",
+      "Id": "f5b918020a1e4afaa85a277f10bfda96",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3c5a2fcc000a465480a13259022ad33d",
+      "End": "ff7130d25e044419a8c82ce06305d8fc",
+      "Id": "84d97217841f453db3529efa00ff55f6",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3c5a2fcc000a465480a13259022ad33d",
+      "End": "d95db6c5f6904fefb1605085c9bfcb62",
+      "Id": "d3319101d32d467e90cc1002415e9174",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3c5a2fcc000a465480a13259022ad33d",
+      "End": "37eb5206ccd4403ba81bae4808d74d96",
+      "Id": "3823fd3fb902443ea6662eafcb37c853",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3c5a2fcc000a465480a13259022ad33d",
+      "End": "081150ea342c4944a7849d9cbbe3bbbd",
+      "Id": "16bb602ac0984e259b1275fa7306b2d7",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "3c5a2fcc000a465480a13259022ad33d",
+      "End": "b99aab63ced64c148d1e7649b9c93947",
+      "Id": "99386ba685cc4fc7bd756f99d130ce83",
+      "IsHidden": "False"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.13",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "2.0",
+      "Data": {}
+    }
+  ],
+  "Author": "None provided",
+  "Linting": {
+    "activeLinter": "Nenhum",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.13.1.3887",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Visualização do plano de fundo",
+      "EyeX": -7.8233229275508265,
+      "EyeY": 91.295075176324872,
+      "EyeZ": 113.56827038981662,
+      "LookX": 26.528176888872981,
+      "LookY": -28.738858296279069,
+      "LookZ": -128.2195216295527,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "ConnectorPins": [],
+    "NodeViews": [
+      {
+        "Name": "Categories",
+        "ShowGeometry": true,
+        "Id": "bcf42ca067ae40c5a6feb6fe84bc1df0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -6237.1009328158007,
+        "Y": 1142.5864043967263
+      },
+      {
+        "Name": "All Elements of Category",
+        "ShowGeometry": true,
+        "Id": "2148264598274de6b7e17a07450ae61e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -6286.8716670261629,
+        "Y": 837.72360361199992
+      },
+      {
+        "Name": "Descricao Planilha de Qunatidades",
+        "ShowGeometry": true,
+        "Id": "33104ea993b640f1b65050e69650415d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -5755.506173124606,
+        "Y": 571.87268507739941
+      },
+      {
+        "Name": "Código",
+        "ShowGeometry": true,
+        "Id": "10b145f2e9954313bf4fb2299c46e15a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -5755.506173124606,
+        "Y": 116.8726850773993
+      },
+      {
+        "Name": "Categories",
+        "ShowGeometry": true,
+        "Id": "13da28811efe4a0d8a718c4d9ac12f49",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -4842.4852692271334,
+        "Y": 822.42962232008176
+      },
+      {
+        "Name": "All Elements of Category",
+        "ShowGeometry": true,
+        "Id": "9f08bb3ccb3840ee939b9591020c44d7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -4656.9708788040634,
+        "Y": 585.9540584580501
+      },
+      {
+        "Name": "Código",
+        "ShowGeometry": true,
+        "Id": "14390f9732214aed915edc9724b3ee41",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -4252.933503595902,
+        "Y": 121.74354775997972
+      },
+      {
+        "Name": "Code Block",
+        "ShowGeometry": true,
+        "Id": "619baed98aaa4e5185795ca1ea36ced9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -4252.9335035959,
+        "Y": 577.733849422262
+      },
+      {
+        "Name": "Code Block",
+        "ShowGeometry": true,
+        "Id": "79e945aae9ec4a0198e8f431d2d2d0c8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -4255.1419748516946,
+        "Y": 1865.5893852337135
+      },
+      {
+        "Name": "Quantidade",
+        "ShowGeometry": true,
+        "Id": "137f356892c44c6d87fabcf9aaaf3a48",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -5741.0067559896888,
+        "Y": 2295.2423041436941
+      },
+      {
+        "Name": "Código",
+        "ShowGeometry": true,
+        "Id": "98892d27a33d4303a231f605c8e64c1e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -5751.69918422828,
+        "Y": 1327.5275706860712
+      },
+      {
+        "Name": "Descricao Planilha de Qunatidades",
+        "ShowGeometry": true,
+        "Id": "be1850f83d3542e092d41d2f90b77ca3",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -5751.69918422828,
+        "Y": 1782.5275706860712
+      },
+      {
+        "Name": "Code Block",
+        "ShowGeometry": true,
+        "Id": "2262171c60274cb5b7acd3c5a775bb81",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -4902.9007144680818,
+        "Y": -902.26873068557
+      },
+      {
+        "Name": "Código",
+        "ShowGeometry": true,
+        "Id": "3ade5882f00c4a06808174c02453cd7e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -4255.1419748516946,
+        "Y": 1407.0494615896835
+      },
+      {
+        "Name": "Quantidade",
+        "ShowGeometry": true,
+        "Id": "609332a0e8a14188b83a50e5907f89be",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -4255.1419748516946,
+        "Y": 2342.1293088777434
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "ec279f6963884656a87017f1088b6fff",
+        "Title": "SEGMENTO DE ELETRODUTO",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "33104ea993b640f1b65050e69650415d",
+          "10b145f2e9954313bf4fb2299c46e15a"
+        ],
+        "HasNestedGroups": false,
+        "Left": -5765.506173124606,
+        "Top": 43.8726850773993,
+        "Width": 833.0,
+        "Height": 1030.0,
+        "FontSize": 36.0,
+        "InitialTop": 116.8726850773993,
+        "InitialHeight": 600.00000000000011,
+        "TextblockHeight": 63.0,
+        "Background": "#FFD8D8D8"
+      },
+      {
+        "Id": "6356cfcf9e8042f89312d7b693c4ee2d",
+        "Title": "LUVA DE SEGMENTO DE ELETRODUTO",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "137f356892c44c6d87fabcf9aaaf3a48",
+          "98892d27a33d4303a231f605c8e64c1e",
+          "be1850f83d3542e092d41d2f90b77ca3"
+        ],
+        "HasNestedGroups": false,
+        "Left": -5761.69918422828,
+        "Top": 1254.5275706860712,
+        "Width": 843.69242823859076,
+        "Height": 1509.714733457623,
+        "FontSize": 36.0,
+        "InitialTop": 1327.5275706860712,
+        "InitialHeight": 1112.714733457623,
+        "TextblockHeight": 63.0,
+        "Background": "#FFD8D8D8"
+      },
+      {
+        "Id": "70a12a72997c4da28bdbd5fb1d39a7de",
+        "Title": "CONEXÃO DE ELETRODUTO",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "14390f9732214aed915edc9724b3ee41",
+          "619baed98aaa4e5185795ca1ea36ced9"
+        ],
+        "HasNestedGroups": false,
+        "Left": -4262.933503595902,
+        "Top": 48.74354775997972,
+        "Width": 833.00000000000182,
+        "Height": 1079.9903016622823,
+        "FontSize": 36.0,
+        "InitialTop": 121.74354775997972,
+        "InitialHeight": 600.99030166228226,
+        "TextblockHeight": 63.0,
+        "Background": "#FFD8D8D8"
+      },
+      {
+        "Id": "dff2502dbe7f4b1ebf07719380d82bc7",
+        "Title": "LUVA PARA CONEXÃO DE ELETRODUTO",
+        "DescriptionText": null,
+        "IsExpanded": true,
+        "WidthAdjustment": 0.0,
+        "HeightAdjustment": 0.0,
+        "Nodes": [
+          "79e945aae9ec4a0198e8f431d2d2d0c8",
+          "3ade5882f00c4a06808174c02453cd7e",
+          "609332a0e8a14188b83a50e5907f89be"
+        ],
+        "HasNestedGroups": false,
+        "Left": -4265.1419748516946,
+        "Top": 1334.0494615896835,
+        "Width": 833.0,
+        "Height": 1428.07984728806,
+        "FontSize": 36.0,
+        "InitialTop": 1407.0494615896835,
+        "InitialHeight": 1080.07984728806,
+        "TextblockHeight": 63.0,
+        "Background": "#FFD8D8D8"
+      }
+    ],
+    "X": 4156.6738725320256,
+    "Y": 890.4429640878509,
+    "Zoom": 0.794419430819087
+  }
+}
