@@ -53,12 +53,12 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "[[false,\nfalse,\nfalse,\nfalse,\nfalse,\nfalse,\nfalse,\nfalse,\nfalse,\nfalse,\nfalse,\nfalse,\nfalse,\ntrue,\ntrue,\ntrue,\ntrue],\n[false,\nfalse,\nfalse,\nfalse,\nfalse,\ntrue,\ntrue,\ntrue,\ntrue,\ntrue,\ntrue]];\n// true = instance\n// false = type",
+      "Code": "[[false,\nfalse,\nfalse,\nfalse,\nfalse,\nfalse,\nfalse,\nfalse,\nfalse,\nfalse,\nfalse,\nfalse,\ntrue,\ntrue,\ntrue,\ntrue,\ntrue],\n[false,\nfalse,\nfalse,\nfalse,\nfalse,\nfalse,\ntrue,\ntrue,\ntrue,\ntrue,\ntrue]];\n// true = instance\n// false = type",
       "Id": "533c70ed3cb146ec8366330a7675f5bb",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "fcbf1d666499439e90d4300076407864",
+          "Id": "b855b7f6d1b446609f07ac059dd74c6c",
           "Name": "",
           "Description": "Valor da expressão na linha 1",
           "UsingDefaultValue": false,
@@ -73,12 +73,12 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "[[\"ESP_classificacao_nivel_01\",\n\"ESP_classificacao_nivel_02\",\n\"ESP_classificacao_nivel_03\",\n\"ESP_classificacao_nivel_04\",\n\"ESP_classificacao_nivel_05\",\n\"ESP_codigo\",\n\"ESP_discriminacao\",\n\"ESP_descricao_base\",\n\"ESP_unidade\",\n\"ESP_especificacao_geral\",\n\"ESP_referencia_fabricante\",\n\"ESP_notas_gerais\",\n\"ESP_contavel\",\n\"PROJ_subdisciplina\",\n\"PROJ_filtro_grafico\",\n\"PROJ_instalacao\",\n\"PROJ_descricao_comentario\"],\n[\"developer_code\",\n\"ITC_schedule\",\n\"ITC_subcategory\",\n\"ITC_dynamo\",\n\"ITC_type_comment\",\n\"ITC_instance_comment\",\n\"ifcExportAs\",\n\"Dy_description\",\n\"Dy_count\",\n\"DATA_compilation\",\n\"DATA_all_compilation\"]];",
+      "Code": "[[\"esp_class_01\",\n\"esp_class_02\",\n\"esp_class_03\",\n\"esp_class_04\",\n\"esp_class_05\",\n\"esp_codigo\",\n\"esp_discriminacao\",\n\"esp_descricao_base\",\n\"esp_unidade\",\n\"esp_especificacao\",\n\"esp_referencia\",\n\"esp_contavel\",\n\"proj_descricao_adicional\",\n\"proj_subdisciplina\",\n\"proj_filtro_grafico\",\n\"proj_instalacao\",\n\"proj_comentario\"],\n[\"developer_code\",\n\"dev_schedule\",\n\"dev_subcategory\",\n\"dev_dynamo\",\n\"dev_type_comment\",\n\"ifcExportAs\",\n\"dev_instance_comment\",\n\"Dy_description\",\n\"Dy_count\",\n\"DATA_compilation\",\n\"DATA_all_compilation\"]];",
       "Id": "6314152ecdd44780813cd9610861e3e4",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "cedf5022fc5e453ea29cc8f2075605fa",
+          "Id": "185477a11e644f40b23f04c75628489e",
           "Name": "",
           "Description": "Valor da expressão na linha 1",
           "UsingDefaultValue": false,
@@ -803,15 +803,15 @@
   ],
   "Connectors": [
     {
-      "Start": "fcbf1d666499439e90d4300076407864",
+      "Start": "b855b7f6d1b446609f07ac059dd74c6c",
       "End": "ec5378a2d7c745d1afe8c71bc3fadf2b",
-      "Id": "72261028339247f293fe5904061e745c",
+      "Id": "80d13b4c92fd413b91b8a5a970ebee16",
       "IsHidden": "False"
     },
     {
-      "Start": "cedf5022fc5e453ea29cc8f2075605fa",
+      "Start": "185477a11e644f40b23f04c75628489e",
       "End": "a3301698960c433fae0602ac9766b901",
-      "Id": "48381fe68157490888022ff805d6c1ef",
+      "Id": "475b43c816e8449195f734741fd0f66f",
       "IsHidden": "False"
     },
     {
@@ -979,8 +979,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 4074.4445135785591,
-        "Y": -3088.8224567522343
+        "X": 4074.44451357856,
+        "Y": -3088.82245675223
       },
       {
         "Name": "Parameters Name",
@@ -989,8 +989,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 3741.985892179006,
-        "Y": -3254.4230621615598
+        "X": 3741.98589217901,
+        "Y": -3254.42306216156
       },
       {
         "Name": "Code Block",
@@ -1226,13 +1226,13 @@
           "6314152ecdd44780813cd9610861e3e4"
         ],
         "HasNestedGroups": false,
-        "Left": 3731.985892179006,
-        "Top": -3327.4230621615598,
-        "Width": 603.45862139955307,
-        "Height": 837.60060540932545,
+        "Left": 3731.98589217901,
+        "Top": -3327.42306216156,
+        "Width": 603.45862139954988,
+        "Height": 837.60060540933,
         "FontSize": 36.0,
-        "InitialTop": -3254.4230621615598,
-        "InitialHeight": 310.60060540932545,
+        "InitialTop": -3254.42306216156,
+        "InitialHeight": 310.60060540933,
         "TextblockHeight": 63.0,
         "Background": "#FF848484"
       },
@@ -1318,8 +1318,8 @@
         "Background": "#FFA4E1FF"
       }
     ],
-    "X": -605.81988185118439,
-    "Y": 1204.87262536553,
-    "Zoom": 0.33256261812405274
+    "X": -1524.3765880862,
+    "Y": 1920.7800053976566,
+    "Zoom": 0.49267607011796266
   }
 }
