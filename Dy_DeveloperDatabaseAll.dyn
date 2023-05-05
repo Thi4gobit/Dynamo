@@ -2,7 +2,7 @@
   "Uuid": "0292d883-03f6-4f53-b7fe-05b4484c82bb",
   "IsCustomNode": false,
   "Description": "",
-  "Name": "Dy_DatabaseAll",
+  "Name": "Dy_DeveloperDatabaseAll",
   "ElementResolver": {
     "ResolutionMap": {
       "Elements.Element": {
@@ -277,8 +277,8 @@
     },
     {
       "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
-      "HintPath": "C:\\Users\\thiagobc\\Desktop\\Nova pasta (2)\\database_developerCode10.txt",
-      "InputValue": "C:\\Users\\thiagobc\\Desktop\\Nova pasta (2)\\database_developerCode10.txt",
+      "HintPath": "Z:\\ITC\\03-DESENVOLVIMENTO\\02-ELÉTRICA\\08-BANCO DE DADOS\\TXT\\datacenter_eletrica8.txt",
+      "InputValue": "..\\..\\..\\08-BANCO DE DADOS\\TXT\\datacenter_eletrica8.txt",
       "NodeType": "ExtensionNode",
       "Id": "89750c4e5a3f427782a6971a6833cff5",
       "Inputs": [],
@@ -560,11 +560,11 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "read = FileSystem.ReadText(data);\nsections = String.Split(read, [\"\\n\"]);\nparameter_name = String.Split(Dictionary.ValueAtKey(List.Deconstruct(sections), \"first\"), [divider]);\nparameter_value = List.Transpose(String.Split(Dictionary.ValueAtKey(List.Deconstruct(sections), \"rest\"), [divider]));",
+      "Code": "read = FileSystem.ReadText(data);\naux1;\naux2;\ntxt_aux1 = String.Replace(read, aux1, aux2);\nsections = String.Split(txt_aux1, [\"||\"]);\nparameter_name = String.Split(Dictionary.ValueAtKey(List.Deconstruct(sections), \"first\"), [divider]);\nparameter_value = List.Transpose(String.Split(Dictionary.ValueAtKey(List.Deconstruct(sections), \"rest\"), [divider]));\n[Imperative]\n{\n\tfor (i in 0..(List.Count(parameter_value[0])-1))\n\t{\n\t\tparameter_value[0][i] = String.Remove(parameter_value[0][i], 0, 2);\n\t};\n\t\treturn parameter_value;\n};",
       "Id": "6ee50051563e4dd49b1d38f987324f53",
       "Inputs": [
         {
-          "Id": "1c131521fe50408c9ec419532979516b",
+          "Id": "d5b9ae2bc38b440ba701623605f67043",
           "Name": "data",
           "Description": "data",
           "UsingDefaultValue": false,
@@ -573,7 +573,25 @@
           "KeepListStructure": false
         },
         {
-          "Id": "80d174c853274484b9f7440c3fa30b90",
+          "Id": "89984059b89f4a6c99e2e164529528e8",
+          "Name": "aux1",
+          "Description": "aux1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "94ceb92fd2084cdb8b3a10343a4f4d05",
+          "Name": "aux2",
+          "Description": "aux2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a5c660efa9644bdfa743c6bf5830c3a3",
           "Name": "divider",
           "Description": "divider",
           "UsingDefaultValue": false,
@@ -584,7 +602,7 @@
       ],
       "Outputs": [
         {
-          "Id": "a0cd74ab4dbd4c51b70729d72935d8ff",
+          "Id": "066d30aeb93b401f9744e0b88af692a8",
           "Name": "",
           "Description": "read",
           "UsingDefaultValue": false,
@@ -593,7 +611,34 @@
           "KeepListStructure": false
         },
         {
-          "Id": "c0da27a3bee24d62a6100822fed68c91",
+          "Id": "96fa92951fd4404d8d2d0fe5b6e4ef88",
+          "Name": "",
+          "Description": "Valor da expressão na linha 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d5bb75d495b54e458ac4e1432a79a1cd",
+          "Name": "",
+          "Description": "Valor da expressão na linha 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a23a23bff97342cab2ffce49fe39f90f",
+          "Name": "",
+          "Description": "txt_aux1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0c3830ae94e644bf8bb884eb1adfce81",
           "Name": "",
           "Description": "sections",
           "UsingDefaultValue": false,
@@ -602,7 +647,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "be5239dd6b5d4c6f8306fd5a3f9dc3a9",
+          "Id": "c05e35319a8a445cb9265242978a5b3e",
           "Name": "",
           "Description": "parameter_name",
           "UsingDefaultValue": false,
@@ -611,9 +656,18 @@
           "KeepListStructure": false
         },
         {
-          "Id": "2a422ec715c44322a924767bfea472fb",
+          "Id": "150f00024a5447aea4592207c2b59438",
           "Name": "",
           "Description": "parameter_value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8cac134364834b89bae16462a311630f",
+          "Name": "",
+          "Description": "Valor da expressão na linha 8",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -626,7 +680,7 @@
     {
       "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
       "NodeType": "StringInputNode",
-      "InputValue": ";",
+      "InputValue": ";|;",
       "Id": "97a97fb06c7143d1b8a0f5466fb64831",
       "Inputs": [],
       "Outputs": [
@@ -646,11 +700,11 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "elements;\nparameter_name;\nparameter_value;\naux1 = Elements.Element.ElementType(elements);\naux2 = ElementType.Name(aux1);\n[Imperative]\n{\n//j=coluna do banco de dados\n//i=instância da lista de elementos\n\tfor (j in 1..(List.Count(parameter_name)-1))\n\t{\n\t\tfor (i in 0..(List.Count(elements)-1))\n\t\t{\n\t\t\tdictionary_aux = Dictionary.ByKeysValues(parameter_value[0], parameter_value[j]);\n\t\t\tdictionary_out = Dictionary.ValueAtKey(dictionary_aux, aux2[i]);\n\t\t\telement1 = Elements.Element.SetParameterByName(aux1[i], parameter_name[j], dictionary_out);\n\t\t};\n\t};\n\t\treturn 0;\n};",
+      "Code": "elements;\nparameter_name;\nparameter_value;\naux1 = Elements.Element.Name(elements);\naux2 = ElementType.ByName(aux1);\n\n[Imperative]\n{\n//j=coluna do banco de dados\n//i=instância da lista de elementos\n\tfor (j in 1..(List.Count(parameter_name)-1))\n\t{\n\t\tfor (i in 0..(List.Count(elements)-1))\n\t\t{\n\t\t\tdictionary_aux = Dictionary.ByKeysValues(parameter_value[0], parameter_value[j]);\n\t\t\tdictionary_out = Dictionary.ValueAtKey(dictionary_aux, aux1[i]);\n\t\t\telement1 = Elements.Element.SetParameterByName(aux2[i], parameter_name[j], dictionary_out);\n\t\t};\n\t};\n\t\treturn 0;\n};",
       "Id": "73ea25cc58c2486380122c310f844bdd",
       "Inputs": [
         {
-          "Id": "4122cfabd4b84ad3bc11179662e2f50b",
+          "Id": "0ca137e54a5a4966bb343765533f628c",
           "Name": "elements",
           "Description": "elements",
           "UsingDefaultValue": false,
@@ -659,7 +713,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "34c586212265459497e7d4548f8fa877",
+          "Id": "c4857ee2eb904db4ac9bb29004984ec5",
           "Name": "parameter_name",
           "Description": "parameter_name",
           "UsingDefaultValue": false,
@@ -668,7 +722,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "40a499b95f904814b4be090596d53176",
+          "Id": "624cd86bff8346e89bc34afe92d8f885",
           "Name": "parameter_value",
           "Description": "parameter_value",
           "UsingDefaultValue": false,
@@ -679,7 +733,7 @@
       ],
       "Outputs": [
         {
-          "Id": "b939da34c2584448bd20762c96c99a93",
+          "Id": "28dfdc0b579a49beb4e66dd2e882c3dd",
           "Name": "",
           "Description": "Valor da expressão na linha 1",
           "UsingDefaultValue": false,
@@ -688,7 +742,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "badfa9db1c9846a8adb011eea9435700",
+          "Id": "00a2215571c74c6fa41c76701170de73",
           "Name": "",
           "Description": "Valor da expressão na linha 2",
           "UsingDefaultValue": false,
@@ -697,7 +751,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "83de5f62ceee4457aea1ed31f08b61da",
+          "Id": "94db1a1f5c23469ab7ad91271fe7ff67",
           "Name": "",
           "Description": "Valor da expressão na linha 3",
           "UsingDefaultValue": false,
@@ -706,7 +760,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "d43e2be84fdb489b90129316bcce1e99",
+          "Id": "98134d0c32554bf2848bae2cc2bc45fb",
           "Name": "",
           "Description": "aux1",
           "UsingDefaultValue": false,
@@ -715,7 +769,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "258f590ecb32460a9889c4c15adc324c",
+          "Id": "ba38800cc44b4567ae3805b1121b2fc5",
           "Name": "",
           "Description": "aux2",
           "UsingDefaultValue": false,
@@ -724,9 +778,9 @@
           "KeepListStructure": false
         },
         {
-          "Id": "efc6a24e7d4647feaa2f0d5a115c620e",
+          "Id": "05bcce0969a84f219e87ef6400dd4646",
           "Name": "",
-          "Description": "Valor da expressão na linha 6",
+          "Description": "Valor da expressão na linha 7",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -735,6 +789,46 @@
       ],
       "Replication": "Disabled",
       "Description": "Permite que o código DesignScript seja criado diretamente"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": ";||",
+      "Id": "a2ca6eb9099844eb9211ceac3e3fd063",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "33d677731e354087be3b8849ba3dffdf",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Cria uma sequência de caracteres."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "||",
+      "Id": "8675baeace894996ac7e961099255b57",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6c1a4908fa684e61b8bf11ee63bf0aee",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Cria uma sequência de caracteres."
     }
   ],
   "Connectors": [
@@ -782,8 +876,8 @@
     },
     {
       "Start": "b6c939e32baa4566a7fcbb3d16933546",
-      "End": "1c131521fe50408c9ec419532979516b",
-      "Id": "71fec05fde8d41d5bbf355b578bcdebe",
+      "End": "d5b9ae2bc38b440ba701623605f67043",
+      "Id": "77c6863b799e40c1ad0200121f9cf12d",
       "IsHidden": "False"
     },
     {
@@ -818,33 +912,45 @@
     },
     {
       "Start": "ff8b086510ba4bb780aaa499347a018f",
-      "End": "4122cfabd4b84ad3bc11179662e2f50b",
-      "Id": "91735e9c5ee04ff8a0e0a0a012fcb465",
+      "End": "0ca137e54a5a4966bb343765533f628c",
+      "Id": "6f60016bc94248ecbdd3e20b24798ca4",
       "IsHidden": "False"
     },
     {
-      "Start": "be5239dd6b5d4c6f8306fd5a3f9dc3a9",
-      "End": "34c586212265459497e7d4548f8fa877",
-      "Id": "e28750a572424dad994338f7e3fd1d05",
+      "Start": "c05e35319a8a445cb9265242978a5b3e",
+      "End": "c4857ee2eb904db4ac9bb29004984ec5",
+      "Id": "d2885159a326428c849d40797a8effd4",
       "IsHidden": "False"
     },
     {
-      "Start": "2a422ec715c44322a924767bfea472fb",
-      "End": "40a499b95f904814b4be090596d53176",
-      "Id": "1bfbd46aaed1457fab617d784e4e85af",
+      "Start": "8cac134364834b89bae16462a311630f",
+      "End": "624cd86bff8346e89bc34afe92d8f885",
+      "Id": "170a5bc5ee4b4b75b6207b01b926e000",
       "IsHidden": "False"
     },
     {
       "Start": "39037bd1759e4248af8d99ef892f46b5",
-      "End": "80d174c853274484b9f7440c3fa30b90",
-      "Id": "f42d0f522b994e3f8555422f8ad09603",
+      "End": "a5c660efa9644bdfa743c6bf5830c3a3",
+      "Id": "31c8ff9028b44979b5318ed4ec849e16",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "33d677731e354087be3b8849ba3dffdf",
+      "End": "89984059b89f4a6c99e2e164529528e8",
+      "Id": "5a0d3a677d824388b3a735833b162d06",
+      "IsHidden": "False"
+    },
+    {
+      "Start": "6c1a4908fa684e61b8bf11ee63bf0aee",
+      "End": "94ceb92fd2084cdb8b3a10343a4f4d05",
+      "Id": "9f7390e0c2db4a20b403bc9bd22b9d25",
       "IsHidden": "False"
     }
   ],
   "Dependencies": [],
   "NodeLibraryDependencies": [
     {
-      "Name": "database_developerCode10.txt",
+      "Name": "datacenter_eletrica8.txt",
       "ReferenceType": "External",
       "Nodes": [
         "89750c4e5a3f427782a6971a6833cff5"
@@ -905,8 +1011,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1518.28609108384,
-        "Y": 8749.11727307522
+        "X": 4819.0687073227546,
+        "Y": 8868.7108461273565
       },
       {
         "Name": "DateTime.Format",
@@ -915,8 +1021,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1821.59842628178,
-        "Y": 8767.20470590812
+        "X": 5122.3810425206939,
+        "Y": 8886.7982789602556
       },
       {
         "Name": "FileSystem.WriteText",
@@ -925,8 +1031,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1512.72072713525,
-        "Y": 9053.8209492603
+        "X": 4813.5033433741646,
+        "Y": 9173.414522312436
       },
       {
         "Name": "Image.WriteToFile",
@@ -935,8 +1041,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1853.59926898615,
-        "Y": 9052.42960827315
+        "X": 5154.3818852250643,
+        "Y": 9172.0231813252867
       },
       {
         "Name": "Categories",
@@ -985,8 +1091,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": -2286.8443402682265,
-        "Y": 9335.3320401801284
+        "X": -2366.4818750680652,
+        "Y": 9312.460146648682
       },
       {
         "Name": "Categories",
@@ -1005,8 +1111,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": -1747.5116219844977,
-        "Y": 9208.3960141565167
+        "X": -1827.1491567843359,
+        "Y": 9185.52412062507
       },
       {
         "Name": "All Elements of Category",
@@ -1075,18 +1181,18 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": -1835.8940241809432,
-        "Y": 9617.8395099030022
+        "X": -1925.879214875572,
+        "Y": 9583.4223213020923
       },
       {
-        "Name": "DIVIDER",
+        "Name": "PARAMETER SPLITTER",
         "ShowGeometry": true,
         "Id": "97a97fb06c7143d1b8a0f5466fb64831",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": -2134.6058600229308,
-        "Y": 9530.9057022378984
+        "X": -2279.8755633989485,
+        "Y": 9818.3802058309575
       },
       {
         "Name": "WRITE INFORMATIONS FROM DATA BASE IN ELEMENTS",
@@ -1095,8 +1201,28 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": -765.61628662361591,
-        "Y": 8915.1323674570613
+        "X": -780.00589247198241,
+        "Y": 8905.9753455535556
+      },
+      {
+        "Name": "END OF THE ROW (READ)",
+        "ShowGeometry": true,
+        "Id": "a2ca6eb9099844eb9211ceac3e3fd063",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -2381.61350922742,
+        "Y": 9515.6326365796358
+      },
+      {
+        "Name": "END OF THE ROW (ASSIGNED)",
+        "ShowGeometry": true,
+        "Id": "8675baeace894996ac7e961099255b57",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -2349.3250910064444,
+        "Y": 9677.6530822703589
       }
     ],
     "Annotations": [
@@ -1142,15 +1268,17 @@
           "89750c4e5a3f427782a6971a6833cff5",
           "5d4c9cf5da374bba8f8f2a68263066a2",
           "6ee50051563e4dd49b1d38f987324f53",
-          "97a97fb06c7143d1b8a0f5466fb64831"
+          "97a97fb06c7143d1b8a0f5466fb64831",
+          "8675baeace894996ac7e961099255b57",
+          "a2ca6eb9099844eb9211ceac3e3fd063"
         ],
         "HasNestedGroups": false,
-        "Left": -2296.8443402682265,
-        "Top": 9135.3960141565167,
-        "Width": 1263.9503160872832,
-        "Height": 673.4434957464855,
+        "Left": -2391.61350922742,
+        "Top": 9112.52412062507,
+        "Width": 1268.7342943518479,
+        "Height": 841.898200677022,
         "FontSize": 36.0,
-        "InitialTop": 9208.3960141565167,
+        "InitialTop": 9185.52412062507,
         "InitialHeight": 554.4434957464855,
         "TextblockHeight": 63.0,
         "Background": "#FF71C6A8"
@@ -1169,19 +1297,19 @@
           "f8132a33bc0245bdbb3061ddad5d4a76"
         ],
         "HasNestedGroups": false,
-        "Left": 1502.72072713525,
-        "Top": 8676.11727307522,
-        "Width": 568.87854185090009,
+        "Left": 4803.5033433741646,
+        "Top": 8795.7108461273565,
+        "Width": 568.87854185089964,
         "Height": 539.70367618507953,
         "FontSize": 36.0,
-        "InitialTop": 8749.11727307522,
+        "InitialTop": 8868.7108461273565,
         "InitialHeight": 449.70367618507953,
         "TextblockHeight": 63.0,
         "Background": "#FFFFC999"
       }
     ],
-    "X": 1846.8805039416766,
-    "Y": -4780.2745537582414,
-    "Zoom": 0.53833724209753775
+    "X": 1163.1944880606793,
+    "Y": -2470.1797223321337,
+    "Zoom": 0.32464685913900693
   }
 }
